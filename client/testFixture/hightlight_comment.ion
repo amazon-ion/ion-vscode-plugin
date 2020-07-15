@@ -1,0 +1,15 @@
+-- SYNTAX TEST "source.ion" 
+
+   // 123
+-- ^^^^^^ comment.line.double-slash.ion 
+   123 // 123
+   --  ^^^^^^ comment.line.double-slash.ion 
+	/* 
+	123
+--  ^^^ comment.block.ion
+	*/ 
+
+	/ 123 /
+
+	/* 123 
+--  ^^^^^^ comment.block.ion 

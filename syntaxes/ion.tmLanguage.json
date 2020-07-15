@@ -1,0 +1,30 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ion",
+	"scopeName": "source.ion", 
+	"patterns": [
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"match": "//[\\w\\W]*", 
+					"name": "comment.line.double-slash.ion"
+				}, 
+				{
+					"begin": "/\\*", 
+					"end": "\\*/", 
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.ion"
+						}
+					}, 
+					"name": "comment.block.ion"
+				}
+			]
+		}
+	}
+}
