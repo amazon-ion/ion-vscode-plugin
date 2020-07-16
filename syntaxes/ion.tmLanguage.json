@@ -5,9 +5,6 @@
 	"patterns": [
 		{
 			"include": "#comments"
-		}, 
-		{
-			"include": "#strings"
 		}
 	],
 	"repository": {
@@ -26,25 +23,6 @@
 						}
 					}, 
 					"name": "comment.block.ion"
-				}
-			]
-		}, 
-		"strings": {
-			"patterns": [
-				{
-					"begin": "\"", 
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.string.begin.json"
-						}
-					}, 
-					"end": "\"", 
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.string.end.json"
-						}
-					}, 
-					"name": "string.quoted.double.json"
 				}
 			]
 		}
