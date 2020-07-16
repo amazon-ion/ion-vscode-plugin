@@ -1,13 +1,13 @@
 {
-	"name": "lsp-sample-client",
-	"description": "VSCode part of a language server",
-	"author": "Microsoft Corporation",
-	"license": "MIT",
+	"name": "ion-lang-client",
+	"description": "VSCode LSP client for Ion. ",
+	"author": "Ziqi",
+	"license": "Apache 2.0",
 	"version": "0.0.1",
-	"publisher": "vscode",
+	"publisher": "ion-team",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/amzn/ion-vscode-plugin"
 	},
 	"engines": {
 		"vscode": "^1.43.0"

@@ -4,7 +4,7 @@ This is a VSCode LSP extension for ion.
 
 ## Functionality 
 
-This one is for highlighting comment. I built the grammar file ion.tmLanguage.json based on the LSP sample from: https://github.com/microsoft/vscode-extension-samples. The test file is under client/testFixture folder. 
+This one is for highlighting comment. The test file is under client/testFixture folder. 
 
 ## Running the Sample
 
