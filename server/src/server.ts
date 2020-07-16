@@ -3,9 +3,7 @@ import {
 	TextDocuments,
 	ProposedFeatures,
 	InitializeParams,
-	DidChangeConfigurationNotification,
-	TextDocumentSyncKind,
-	InitializeResult
+	TextDocumentSyncKind
 } from 'vscode-languageserver';
 
 import {
