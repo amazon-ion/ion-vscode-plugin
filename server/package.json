@@ -1,15 +1,15 @@
 {
-	"name": "lsp-sample-server",
-	"description": "Example implementation of a language server in node.",
+	"name": "ion-lang-server",
+	"description": "VSCode LSP server for Ion. ",
 	"version": "1.0.0",
-	"author": "Microsoft Corporation",
+	"author": "Ziqi",
 	"license": "MIT",
 	"engines": {
 		"node": "*"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/amzn/ion-vscode-plugin"
 	},
 	"dependencies": {
 		"vscode-languageserver": "^6.1.1",
