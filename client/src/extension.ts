@@ -1,8 +1,3 @@
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { workspace, ExtensionContext } from 'vscode';
@@ -13,7 +8,6 @@ import {
 	ServerOptions,
 	TransportKind
 } from 'vscode-languageclient';
-import { editor } from './test/helper';
 
 let client: LanguageClient;
 
@@ -57,12 +51,6 @@ export function activate(context: ExtensionContext) {
 
 	// Start the client. This will also launch the server
 	client.start();
-
-	const res = vscode.commands.executeCommand ("editor.action.inspectTMScopes"); 
-	const color = new vscode.ThemeColor ('textCodeBlock.background'); 
-
-	console.log (color); 
-
 }
 
 export function deactivate(): Thenable<void> | undefined {
