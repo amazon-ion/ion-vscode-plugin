@@ -2,9 +2,9 @@
 	"name": "ion-lang-client",
 	"description": "VSCode LSP client for Ion. ",
 	"author": "Ziqi",
-	"license": "MIT",
+	"license": "Apache 2.0",
 	"version": "0.0.1",
-	"publisher": "ion-lang",
+	"publisher": "ion-team",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/amzn/ion-vscode-plugin"
