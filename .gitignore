@@ -1,7 +1,5 @@
 out
 node_modules
-.vscode-test/
-*.vsix
 .vscode/tasks.json 
 .vscode/settings.json
 .gitignore
