@@ -5,6 +5,9 @@
 	"patterns": [
 		{
 			"include": "#comments"
+		}, 
+		{
+			"include": "#strings"
 		}
 	],
 	"repository": {
@@ -23,6 +26,66 @@
 						}
 					}, 
 					"name": "comment.block.ion"
+				}
+			]
+		}, 
+		"strings": {
+			"patterns": [
+				{
+					"match": "null\\.string", 
+					"name": "string.null.ion"
+				}, 
+				{
+					"begin": "\"", 
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.ion"
+						}
+					}, 
+					"end": "[\"\\n]", 
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.ion"
+						}
+					}, 
+					"name": "string.quoted.double.ion", 
+					"patterns": [
+						{
+							"include": "#constants"
+						}
+					]
+				}, 
+				{
+					"begin": "\\'\\'\\'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.ion"
+						}
+					}, 
+					"end": "\\'\\'\\'", 
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.ion"
+						}
+					}, 
+					"name": "string.quoted.triple.ion", 
+					"patterns": [
+						{
+							"include": "#constants"
+						}
+					]
+				}
+			]
+		}, 
+		"constants": {
+			"patterns": [
+				{
+					"match": "\\\\(?:[0abtnfrv/\"\\'\\?\\\\]|NL|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})", 
+					"name": "constant.character.escape.ion"
+				}, 
+				{
+					"match": "\\\\.", 
+					"name": "invalid.illegal.unrecognized-string-escape.ion"
 				}
 			]
 		}
