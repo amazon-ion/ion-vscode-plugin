@@ -1,0 +1,15 @@
+-- SYNTAX TEST "source.ion" 
+
+1. null: 
+   null.string
+-- ^^^^^^^^^^^ string.null.ion 
+
+2. double quotes: 
+   "123"
+--  ^^^ string.quoted.double.json
+	"\0\a\b\t\n\f\r\v\"\'\?\\\/\NL\x00\u0000\U00000000"
+--   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.character.escape.ion
+	"\c"
+--   ^^ invalid.illegal.unrecognized-string-escape.ion
+
+3. triple quotes: 
