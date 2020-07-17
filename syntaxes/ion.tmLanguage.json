@@ -48,7 +48,7 @@
 							"name": "punctuation.definition.string.end.ion"
 						}
 					}, 
-					"name": "string.quoted.double.json", 
+					"name": "string.quoted.double.ion", 
 					"patterns": [
 						{
 							"include": "#constants"
@@ -56,7 +56,24 @@
 					]
 				}, 
 				{
-					
+					"begin": "\\'\\'\\'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.ion"
+						}
+					}, 
+					"end": "\\'\\'\\'", 
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.ion"
+						}
+					}, 
+					"name": "string.quoted.triple.ion", 
+					"patterns": [
+						{
+							"include": "#constants"
+						}
+					]
 				}
 			]
 		}, 
@@ -74,4 +91,3 @@
 		}
 	}
 }
-

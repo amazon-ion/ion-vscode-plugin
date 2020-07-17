@@ -6,11 +6,18 @@
 
 2. double quotes: 
    "123"
---  ^^^ string.quoted.double.json
+--  ^^^ string.quoted.double.ion
   "\0\a\b\t\n\f\r\v\"\'\?\\\/\NL\x00\u0000\U00000000"
 --  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.character.escape.ion
   "\c\c\c"
 -- ^^^ invalid.illegal.unrecognized-string-escape.ion
 
 3. triple quotes: 
-
+   '''123'''
+--    ^^^ string.quoted.triple.ion
+   '''\0\a\b\t\n\f\r\v\"\'\?\\\/\NL\x00\u0000\U00000000'''
+--    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.character.escape.ion
+   '''
+   123
+-- ^^^ string.quoted.triple.ion
+   '''
