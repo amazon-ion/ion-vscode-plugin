@@ -1,0 +1,52 @@
+-- SYNTAX TEST "source.ion" 
+
+   null.int 
+-- ^^^^^^ constant.numeric.null.ion
+   null.decimal 
+-- ^^^^^^ constant.numeric.null.ion
+   null.float 
+-- ^^^^^^ constant.numeric.null.ion
+
+   +inf 
+-- ^^^^ constant.numeric.special_float.ion
+   -INF 
+-- ^^^^ constant.numeric.special_float.ion
+   nan 
+-- ^^^ constant.numeric.special_float.ion
+
+   0b1_000_111_1 
+-- ^^^^^^ constant.numeric.bin_integer.ion
+   -0B1_000_111_1 
+-- ^^^^^^ constant.numeric.bin_integer.ion
+   0x1_a_f_b 
+-- ^^^^^^ constant.numeric.hex_integer.ion
+   -0X2_A_F_B 
+-- ^^^^^^ constant.numeric.hex_integer.ion
+
+   123 
+-- ^^^ constant.numeric.ion
+   -1_2_3 
+-- ^^^^^^ constant.numeric.ion
+   0.12 
+-- ^^^^ constant.numeric.ion
+   -0.12e4 
+-- ^^^^^^ constant.numeric.ion
+   -0.12d4 
+-- ^^^^^^ constant.numeric.ion
+   0E0 
+-- ^^^ constant.numeric.ion
+   0D0 
+-- ^^^ constant.numeric.ion
+   0. 
+-- ^^ constant.numeric.ion
+   -0e0 
+-- ^^^^ constant.numeric.ion
+   -0d0 
+-- ^^^^ constant.numeric.ion
+   -0. 
+-- ^^^ constant.numeric.ion
+   -0d-1 
+-- ^^^^^ constant.numeric.ion
+   123_456.789_012 
+-- ^^^^^^^^^^^ constant.numeric.ion
+
