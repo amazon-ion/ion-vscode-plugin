@@ -1,8 +1,8 @@
 {
-	"name": "ion-lang-server",
+	"name": "ion-lsp-server",
 	"description": "VSCode LSP server for Ion. ",
 	"version": "0.1.0",
-	"author": "Ziqi",
+	"author": "ion-team",
 	"license": "Apache 2.0",
 	"engines": {
 		"node": "*"
