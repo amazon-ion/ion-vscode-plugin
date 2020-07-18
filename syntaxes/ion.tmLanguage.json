@@ -88,7 +88,7 @@
 					"name": "constant.numeric.null.ion"
 				}, 
 				{
-					"match": "(?i:(?:[+-]inf|nan))\\b", 
+					"match": "(?:[+-]inf|nan)\\b", 
 					"name": "constant.numeric.special_float.ion"	
 				}, 
 				{
@@ -119,7 +119,5 @@
 		}
 	}
 }
-
-
 
 

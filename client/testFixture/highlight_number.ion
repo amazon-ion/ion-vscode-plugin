@@ -9,7 +9,7 @@
 
    +inf 
 -- ^^^^ constant.numeric.special_float.ion
-   -INF 
+   -inf 
 -- ^^^^ constant.numeric.special_float.ion
    nan 
 -- ^^^ constant.numeric.special_float.ion
