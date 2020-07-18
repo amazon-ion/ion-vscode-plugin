@@ -1,5 +1,3 @@
 out
 node_modules
 .vscode-test
-.vscode/tasks.json 
-.vscode/settings.json
