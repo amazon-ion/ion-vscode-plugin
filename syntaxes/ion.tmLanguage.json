@@ -80,11 +80,16 @@
 				}
 			]
 		}, 
-		"numbers": {
+		"numbers": { 
+			"comment": "This is a copy from Antlr Ion with merging DEC_INTEGER, FLOAT and DECIMAL together into constant.numeric.ion. ", 
 			"patterns": [
 				{
 					"match": "\\b(?:null.int|null.decimal|null.float)\\b", 
 					"name": "constant.numeric.null.ion"
+				}, 
+				{
+					"match": "(?i:(?:[+-]inf|nan))\\b", 
+					"name": "constant.numeric.special_float.ion"	
 				}, 
 				{
 					"match": "-?0[bB][01](?:_?[01])*", 
@@ -95,12 +100,8 @@
 					"name": "constant.numeric.hex_integer.ion"	
 				}, 
 				{
-					"match": "-?\\d", 
-					"name": "constant.numeric.dec_integer.ion"	
-				}, 
-				{
-					"match": "(?i:(?:[+-]inf|nan))\\b", 
-					"name": "constant.numeric.special_float.ion"	
+					"match": "-?(?:0|[1-9](?:_?\\d)*)(?:\\.|\\.\\d(?:_?\\d)*)?(?:[eEdD][+-]?\\d+)?", 
+					"name": "constant.numeric.ion"
 				}
 			]
 		}, 
@@ -118,5 +119,7 @@
 		}
 	}
 }
+
+
 
 
