@@ -42,7 +42,7 @@
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"test": "vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t 'client/testFixture/**/*.ion'"
+		"test": "vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t \"client/testFixture/**/*.ion\""
 	},
 	"devDependencies": {
 		"@types/mocha": "^5.2.7",
