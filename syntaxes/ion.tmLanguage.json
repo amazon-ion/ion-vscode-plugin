@@ -100,8 +100,16 @@
 					"name": "constant.numeric.hex_integer.ion"	
 				}, 
 				{
-					"match": "-?(?:0|[1-9](?:_?\\d)*)(?:\\.|\\.\\d(?:_?\\d)*)?(?:[eEdD][+-]?\\d+)?", 
-					"name": "constant.numeric.ion"
+					"match": "-?(?:0|[1-9](?:_?\\d)*)(?:\\.(?:\\d(?:_?\\d)*)?)?(?:[eE][+-]?\\d+)", 
+					"name": "constant.numeric.float.ion"
+				}, 
+				{
+					"match": "-?(?:0|[1-9](?:_?\\d)*)(?:(?:(?:\\.(?:\\d(?:_?\\d)*)?)(?:[dD][+-]?\\d+)|\\.(?:\\d(?:_?\\d)*)?)|(?:[dD][+-]?\\d+))", 
+					"name": "constant.numeric.decimal.ion"
+				}, 
+				{
+					"match": "-?(?:0|[1-9](?:_?\\d)*)", 
+					"name": "constant.numeric.dec_integer.ion"
 				}
 			]
 		}, 
