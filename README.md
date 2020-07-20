@@ -22,5 +22,5 @@ This one is for highlighting comment. The test file is under client/testFixture 
 ## Running the Test
 
 - Run `npm i -g vscode-tmgrammar-test` in this folder. This installs the command line tool vscode-tmgrammar-test. 
-- Run `vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t 'client/testFixture/hightlight_comment.ion'` to do the test. 
+- Run `vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t 'client/testFixture/highlight_comment.ion'` to do the test. 
 - More about vscode-tmgrammar-test can be found here: https://github.com/PanAeon/vscode-tmgrammar-tes

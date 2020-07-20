@@ -2,7 +2,6 @@ out
 node_modules
 .vscode-test
 
-
 # Created by https://www.toptal.com/developers/gitignore/api/vim,emacs,intellij+all,eclipse,visualstudiocode,visualstudio,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,emacs,intellij+all,eclipse,visualstudiocode,visualstudio,node
 

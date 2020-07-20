@@ -8,6 +8,9 @@
 		}, 
 		{
 			"include": "#strings"
+		}, 
+		{
+			"include": "#numbers"
 		}
 	],
 	"repository": {
@@ -32,7 +35,7 @@
 		"strings": {
 			"patterns": [
 				{
-					"match": "null\\.string", 
+					"match": "\\bnull\\.string\\b", 
 					"name": "string.null.ion"
 				}, 
 				{
@@ -51,7 +54,7 @@
 					"name": "string.quoted.double.ion", 
 					"patterns": [
 						{
-							"include": "#constants"
+							"include": "#escape"
 						}
 					]
 				}, 
@@ -71,16 +74,49 @@
 					"name": "string.quoted.triple.ion", 
 					"patterns": [
 						{
-							"include": "#constants"
+							"include": "#escape"
 						}
 					]
 				}
 			]
 		}, 
-		"constants": {
+		"numbers": { 
+			"comment": "This is a copy from Antlr Ion. ", 
 			"patterns": [
 				{
-					"match": "\\\\(?:[0abtnfrv/\"\\'\\?\\\\]|NL|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})", 
+					"match": "\\b(?:null.int|null.decimal|null.float)\\b", 
+					"name": "constant.numeric.null.ion"
+				}, 
+				{
+					"match": "(?:[+-]inf|nan)\\b", 
+					"name": "constant.numeric.special_float.ion"	
+				}, 
+				{
+					"match": "-?0[bB][01](?:_?[01])*", 
+					"name": "constant.numeric.bin_integer.ion"			
+				}, 
+				{
+					"match": "-?0[xX][\\h](?:_?[\\h])*", 
+					"name": "constant.numeric.hex_integer.ion"	
+				}, 
+				{
+					"match": "-?(?:0|[1-9](?:_?\\d)*)(?:\\.(?:\\d(?:_?\\d)*)?)?(?:[eE][+-]?\\d+)", 
+					"name": "constant.numeric.float.ion"
+				}, 
+				{
+					"match": "-?(?:0|[1-9](?:_?\\d)*)(?:(?:(?:\\.(?:\\d(?:_?\\d)*)?)(?:[dD][+-]?\\d+)|\\.(?:\\d(?:_?\\d)*)?)|(?:[dD][+-]?\\d+))", 
+					"name": "constant.numeric.decimal.ion"
+				}, 
+				{
+					"match": "-?(?:0|[1-9](?:_?\\d)*)", 
+					"name": "constant.numeric.integer.ion"
+				}
+			]
+		}, 
+		"escape": {
+			"patterns": [
+				{
+					"match": "\\\\(?:[0abtnfrv/\"\\'\\?\\\\]|NL|x[\\h]{2}|u[\\h]{4}|U[\\h]{8})", 
 					"name": "constant.character.escape.ion"
 				}, 
 				{
@@ -91,4 +127,5 @@
 		}
 	}
 }
+
 
