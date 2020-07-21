@@ -1,0 +1,67 @@
+-- SYNTAX TEST "source.ion" 
+
+    null.null 
+--  ^^^^^^^^^ constant.language.null.ion 
+    null.bool 
+--  ^^^^^^^^^ constant.language.null.ion 
+    null.int 
+--  ^^^^^^^^ constant.language.null.ion 
+    null.float 
+--  ^^^^^^^^^^ constant.language.null.ion 
+    null.decimal 
+--  ^^^^^^^^^^^^ constant.language.null.ion 
+    null.timestamp 
+--  ^^^^^^^^^^^^^^ constant.language.null.ion 
+    null.string 
+--  ^^^^^^^^^^^ constant.language.null.ion 
+    null.symbol 
+--  ^^^^^^^^^^^ constant.language.null.ion 
+    null.blob 
+--  ^^^^^^^^^ constant.language.null.ion 
+    null.clob 
+--  ^^^^^^^^^ constant.language.null.ion 
+    null.struct 
+--  ^^^^^^^^^^^ constant.language.null.ion 
+    null.list 
+--  ^^^^^^^^^ constant.language.null.ion 
+    null.sexp 
+--  ^^^^^^^^^ constant.language.null.ion 
+    null
+--  ^^^^ constant.language.null.ion 
+
+    true 
+--  ^^^^ constant.language.bool.ion 
+    false 
+--  ^^^^^ constant.language.bool.ion 
+
+    +inf 
+--  ^^^^ constant.language.special_float.ion
+    -inf 
+--  ^^^^ constant.language.special_float.ion
+    nan 
+--  ^^^ constant.language.special_float.ion
+
+    bool 
+--  ^^^^ constant.language.type.ion
+    int 
+--  ^^^ constant.language.type.ion
+    float 
+--  ^^^^^ constant.language.type.ion
+    decimal 
+--  ^^^^^^^ constant.language.type.ion
+    timestamp 
+--  ^^^^^^^^^ constant.language.type.ion
+    symbol 
+--  ^^^^^^ constant.language.type.ion
+    string 
+--  ^^^^^^ constant.language.type.ion
+    clob 
+--  ^^^^ constant.language.type.ion
+    blob 
+--  ^^^^ constant.language.type.ion
+    list 
+--  ^^^^ constant.language.type.ion
+    sexp 
+--  ^^^^ constant.language.type.ion
+    struct 
+--  ^^^^^^ constant.language.type.ion
