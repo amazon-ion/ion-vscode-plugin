@@ -30,10 +30,6 @@
 				{
 					"match": "(?:[+-]inf|nan)\\b", 
 					"name": "constant.language.special_float.ion" 
-				}, 
-				{
-					"match": "\\b(?:bool|int|float|decimal|timestamp|symbol|string|clob|blob|list|sexp|struct)\\b", 
-					"name": "constant.language.type.ion" 
 				}
 			]
 		}, 
