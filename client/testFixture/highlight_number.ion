@@ -1,19 +1,5 @@
 -- SYNTAX TEST "source.ion" 
 
-   null.int 
--- ^^^^^^ constant.numeric.null.ion
-   null.decimal 
--- ^^^^^^ constant.numeric.null.ion
-   null.float 
--- ^^^^^^ constant.numeric.null.ion
-
-   +inf 
--- ^^^^ constant.numeric.special_float.ion
-   -inf 
--- ^^^^ constant.numeric.special_float.ion
-   nan 
--- ^^^ constant.numeric.special_float.ion
-
    0b1_000_111_1 
 -- ^^^^^^ constant.numeric.bin_integer.ion
    -0B1_000_111_1 
