@@ -4,28 +4,51 @@
 	"scopeName": "source.ion", 
 	"patterns": [
 		{
-			"include": "#comments"
+			"include": "#keywords" 
 		}, 
 		{
-			"include": "#strings"
+			"include": "#comments" 
 		}, 
 		{
-			"include": "#numbers"
+			"include": "#strings" 
+		}, 
+		{
+			"include": "#numbers" 
 		}
 	],
-	"repository": {
+	"repository": { 
+		"keywords": {
+			"patterns": [ 
+				{ 
+					"match": "(?:null\\.null|null\\.bool|null\\.int|null\\.float|null\\.decimal|null\\.timestamp|null\\.string|null\\.symbol|null\\.blob|null\\.clob|null\\.struct|null\\.list|null\\.sexp|null)", 
+					"name": "constant.language.null.ion" 
+				}, 
+				{ 
+					"match": "\\b(?:true|false)\\b", 
+					"name": "constant.language.bool.ion" 
+				}, 
+				{
+					"match": "(?:[+-]inf|nan)\\b", 
+					"name": "constant.language.special_float.ion" 
+				}, 
+				{
+					"match": "\\b(?:bool|int|float|decimal|timestamp|symbol|string|clob|blob|list|sexp|struct)\\b", 
+					"name": "constant.language.type.ion" 
+				}
+			]
+		}, 
 		"comments": {
 			"patterns": [
 				{
 					"match": "//[\\w\\W]*", 
-					"name": "comment.line.double-slash.ion"
+					"name": "comment.line.double-slash.ion" 
 				}, 
-				{
+				{ 
 					"begin": "/\\*", 
 					"end": "\\*/", 
-					"captures": {
-						"0": {
-							"name": "punctuation.definition.comment.ion"
+					"captures": { 
+						"0": { 
+							"name": "punctuation.definition.comment.ion" 
 						}
 					}, 
 					"name": "comment.block.ion"
@@ -35,20 +58,16 @@
 		"strings": {
 			"patterns": [
 				{
-					"match": "\\bnull\\.string\\b", 
-					"name": "string.null.ion"
-				}, 
-				{
 					"begin": "\"", 
 					"beginCaptures": {
 						"0": {
-							"name": "punctuation.definition.string.begin.ion"
+							"name": "punctuation.definition.string.begin.ion" 
 						}
 					}, 
 					"end": "[\"\\n]", 
 					"endCaptures": {
 						"0": {
-							"name": "punctuation.definition.string.end.ion"
+							"name": "punctuation.definition.string.end.ion" 
 						}
 					}, 
 					"name": "string.quoted.double.ion", 
@@ -83,14 +102,6 @@
 		"numbers": { 
 			"comment": "This is a copy from Antlr Ion. ", 
 			"patterns": [
-				{
-					"match": "\\b(?:null.int|null.decimal|null.float)\\b", 
-					"name": "constant.numeric.null.ion"
-				}, 
-				{
-					"match": "(?:[+-]inf|nan)\\b", 
-					"name": "constant.numeric.special_float.ion"	
-				}, 
 				{
 					"match": "-?0[bB][01](?:_?[01])*", 
 					"name": "constant.numeric.bin_integer.ion"			
@@ -127,5 +138,4 @@
 		}
 	}
 }
-
 
