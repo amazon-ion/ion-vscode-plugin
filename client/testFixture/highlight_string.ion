@@ -1,10 +1,6 @@
 -- SYNTAX TEST "source.ion" 
 
-1. null: 
-   null.string
--- ^^^^^^^^^^^ string.null.ion 
-
-2. double quotes: 
+1. double quotes: 
    "123"
 --  ^^^ string.quoted.double.ion
   "\0\a\b\t\n\f\r\v\"\'\?\\\/\NL\x00\u0000\U00000000"
@@ -12,7 +8,7 @@
   "\c\c\c"
 -- ^^^ invalid.illegal.unrecognized-string-escape.ion
 
-3. triple quotes: 
+2. triple quotes: 
    '''123'''
 --    ^^^ string.quoted.triple.ion
    '''\0\a\b\t\n\f\r\v\"\'\?\\\/\NL\x00\u0000\U00000000'''
