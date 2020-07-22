@@ -35,4 +35,3 @@
 -- ^^^^^ constant.numeric.decimal.ion
    123_456.789_012 
 -- ^^^^^^^^^^^ constant.numeric.decimal.ion
-
