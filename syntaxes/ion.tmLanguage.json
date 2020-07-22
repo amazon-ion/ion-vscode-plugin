@@ -14,6 +14,12 @@
 		}, 
 		{
 			"include": "#numbers" 
+		}, 
+		{
+			"include": "#blob"
+		}, 
+		{
+			"include": "#clob"
 		}
 	],
 	"repository": { 
@@ -122,6 +128,43 @@
 				{
 					"match": "-?(?:0|[1-9](?:_?\\d)*)", 
 					"name": "constant.numeric.integer.ion"
+				}
+			]
+		}, 
+		"blob": {
+			"match": "(\\{\\{\\s?)((?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?)(\\s?\\}\\})", 
+			"captures": {
+				"0": {
+					"name": "meta.structure.blob.ion"
+				}, 
+				"1": {
+					"name": "punctuation.definition.blob.begin.ion"
+				}, 
+				"2": {
+					"name": "markup.inline.raw"
+				}, 
+				"3": {
+					"name": "punctuation.definition.blob.end.ion"
+				}
+			}
+		}, 
+		"clob": {
+			"begin": "\\{\\{", 
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.clob.begin.ion"
+				}
+			},
+			"end": "\\}\\}", 
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.clob.end.ion"
+				}
+			},
+			"name": "meta.structure.clob.ion", 
+			"patterns": [
+				{
+					"include": "#strings"
 				}
 			]
 		}, 
