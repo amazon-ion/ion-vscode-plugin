@@ -168,33 +168,6 @@
 				}
 			]
 		}, 
-
-
-
-		"blob1": {
-			"begin": "\\{\\{", 
-			"beginCaptures": {
-				"0": {
-					"name": "punctuation.definition.double-curly-braces.begin.ion"
-				}
-			},
-			"end": "\\}\\}", 
-			"endCaptures": {
-				"0": {
-					"name": "punctuation.definition.double-curly-braces.end.ion"
-				}
-			},
-			"name": "meta.structure.double-curly-braces.ion", 
-			"patterns": [
-				{
-					"include": "#strings"
-				}, 
-				{ 
-					"match": "(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?", 
-					"name": "markup.inline.raw" 
-				}
-			]
-		}, 
 		"escape": {
 			"patterns": [
 				{
