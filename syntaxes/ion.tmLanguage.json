@@ -13,6 +13,7 @@
 			"include": "#strings"
 		},
 		{
+<<<<<<< HEAD
 			"include": "#numbers"
 		},
 		{
@@ -23,6 +24,15 @@
 		},
 		{
 			"include": "#symbols"
+=======
+			"include": "#numbers" 
+		}, 
+		{
+			"include": "#blob"
+		}, 
+		{
+			"include": "#clob"
+>>>>>>> 046fca74fb3f1fb6ae6327501e869974af247e6f
 		}
 	],
 	"repository": {
@@ -108,10 +118,21 @@
 			"comment": "This is a copy from Antlr Ion. ",
 			"patterns": [
 				{
+<<<<<<< HEAD
 					"match": "(?:(?:000[1-9]|00[1-9]\\d|0[1-9]\\d{2}|[1-9]\\d{3})-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])(?:T(?:(?:[01]\\d|2[0-3])\\:(?:[0-5]\\d)(?:\\:(?:[0-5]\\d(?:\\.\\d+)?))?(?:Z|[+-](?:[01]\\d|2[0-3])\\:(?:[0-5]\\d)))?)?|(?:000[1-9]|00[1-9]\\d|0[1-9]\\d{2}|[1-9]\\d{3})-(?:0[1-9]|1[0-2])T|(?:000[1-9]|00[1-9]\\d|0[1-9]\\d{2}|[1-9]\\d{3})T)",
 					"name": "constant.numeric.timestamp.ion",
 					"comment": "TIMESTAMP: (?:YEAR '-' MONTH '-' DAY ('T' HOUR ':' MINUTE (':' SECOND)? OFFSET?)? | YEAR '-' MONTH 'T' | YEAR 'T'), YEAR: (?:000[1-9]|00[1-9]\\d|0[1-9]\\d{2}|[1-9]\\d{3}), MONTH: (?:0[1-9]|1[0-2]), DAY: (?:0[1-9]|[12]\\d|3[01]), HOUR: (?:[01]\\d|2[0-3]), MINUTE: (?:[0-5]\\d), SECOND: (?:[0-5]\\d(?:\\.\\d+)?), OFFSET: (?:Z|[+-] HOUR \\: MINUTE)"
 				},
+=======
+					"match": "(?:(?:000[1-9]|00[1-9]\\d|0[1-9]\\d{2}|[1-9]\\d{3})-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])(?:T(?:(?:[01]\\d|2[0-3])\\:(?:[0-5]\\d)(?:\\:(?:[0-5]\\d(?:\\.\\d+)?))?(?:Z|[+-](?:[01]\\d|2[0-3])\\:(?:[0-5]\\d)))?)?|(?:000[1-9]|00[1-9]\\d|0[1-9]\\d{2}|[1-9]\\d{3})-(?:0[1-9]|1[0-2])T|(?:000[1-9]|00[1-9]\\d|0[1-9]\\d{2}|[1-9]\\d{3})T)", 
+					"name": "constant.numeric.timestamp.ion", 
+					"comment": "TIMESTAMP: (?:YEAR '-' MONTH '-' DAY ('T' HOUR ':' MINUTE (':' SECOND)? OFFSET?)? | YEAR '-' MONTH 'T' | YEAR 'T'), YEAR: (?:000[1-9]|00[1-9]\\d|0[1-9]\\d{2}|[1-9]\\d{3}), MONTH: (?:0[1-9]|1[0-2]), DAY: (?:0[1-9]|[12]\\d|3[01]), HOUR: (?:[01]\\d|2[0-3]), MINUTE: (?:[0-5]\\d), SECOND: (?:[0-5]\\d(?:\\.\\d+)?), OFFSET: (?:Z|[+-] HOUR \\: MINUTE)"
+				}, 
+				{
+					"match": "-?0[bB][01](?:_?[01])*", 
+					"name": "constant.numeric.bin_integer.ion"			
+				}, 
+>>>>>>> 046fca74fb3f1fb6ae6327501e869974af247e6f
 				{
 					"match": "-?0[bB][01](?:_?[01])*",
 					"name": "constant.numeric.bin_integer.ion"
@@ -133,6 +154,7 @@
 					"name": "constant.numeric.integer.ion"
 				}
 			]
+<<<<<<< HEAD
 		},
 		"blob": {
 			"match": "(\\{\\{\\s?)((?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?)(\\s?\\}\\})",
@@ -146,30 +168,60 @@
 				"2": {
 					"name": "markup.inline.raw"
 				},
+=======
+		}, 
+		"blob": {
+			"match": "(\\{\\{\\s?)((?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?)(\\s?\\}\\})", 
+			"captures": {
+				"0": {
+					"name": "meta.structure.blob.ion"
+				}, 
+				"1": {
+					"name": "punctuation.definition.blob.begin.ion"
+				}, 
+				"2": {
+					"name": "markup.inline.raw"
+				}, 
+>>>>>>> 046fca74fb3f1fb6ae6327501e869974af247e6f
 				"3": {
 					"name": "punctuation.definition.blob.end.ion"
 				}
 			}
+<<<<<<< HEAD
 		},
 		"clob": {
 			"begin": "\\{\\{",
+=======
+		}, 
+		"clob": {
+			"begin": "\\{\\{", 
+>>>>>>> 046fca74fb3f1fb6ae6327501e869974af247e6f
 			"beginCaptures": {
 				"0": {
 					"name": "punctuation.definition.clob.begin.ion"
 				}
 			},
+<<<<<<< HEAD
 			"end": "\\}\\}",
+=======
+			"end": "\\}\\}", 
+>>>>>>> 046fca74fb3f1fb6ae6327501e869974af247e6f
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.clob.end.ion"
 				}
 			},
+<<<<<<< HEAD
 			"name": "meta.structure.clob.ion",
+=======
+			"name": "meta.structure.clob.ion", 
+>>>>>>> 046fca74fb3f1fb6ae6327501e869974af247e6f
 			"patterns": [
 				{
 					"include": "#strings"
 				}
 			]
+<<<<<<< HEAD
 		},
 		"symbols": {
 			"patterns": [
@@ -199,6 +251,9 @@
 				}
 			]
 		},
+=======
+		}, 
+>>>>>>> 046fca74fb3f1fb6ae6327501e869974af247e6f
 		"escape": {
 			"patterns": [
 				{
