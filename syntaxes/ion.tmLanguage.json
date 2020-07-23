@@ -4,7 +4,29 @@
 	"scopeName": "source.ion",
 	"patterns": [
 		{
+<<<<<<< HEAD
 			"include": "#values"
+=======
+			"include": "#keywords"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#blob"
+		},
+		{
+			"include": "#clob"
+		},
+		{
+			"include": "#symbols"
+>>>>>>> 34fbacac809730a80976b3ccb850b7f670a60877
 		}
 	],
 	"repository": {
@@ -180,6 +202,7 @@
 					"name": "variable.language.symbol.ion"
 				}
 			]
+<<<<<<< HEAD
 		}, 
 		"structs": {
 			"begin": "\\{", 
@@ -232,6 +255,9 @@
 				}
 			]
 		}, 
+=======
+		},
+>>>>>>> 34fbacac809730a80976b3ccb850b7f670a60877
 		"escape": {
 			"patterns": [
 				{
@@ -274,4 +300,3 @@
 		}
 	}
 }
-
