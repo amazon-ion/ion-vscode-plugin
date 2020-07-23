@@ -1,0 +1,12 @@
+-- SYNTAX TEST "source.ion" 
+
+   'myVar2'
+--  ^^^^^^ variable.language.symbol.ion 
+   myVar2
+-- ^^^^^^ variable.language.symbol.ion 
+   '\'ahoy\'' 
+--  ^^^^^^^^ variable.language.symbol.ion 
+   'hi ho'
+--  ^^^^^ variable.language.symbol.ion 
+   ''
+-- ^^ variable.language.symbol.ion 
