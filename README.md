@@ -1,12 +1,15 @@
+
+:warning: **This repo is considered an early release, under active early development, and the APIs/features are subject to change.** :warning:
+
 # VSCode extension for ion 
 
-This is a VSCode LSP extension for ion. 
+VSCode extension (plugin) that supports the Ion data format.  
 
 ## Functionality 
 
-This one is for highlighting comment. The test file is under client/testFixture folder. 
+* Syntax highlighting. 
 
-## Running the Sample
+## Development 
 
 - Run `npm install` in this folder. This installs all necessary npm modules in both the client and server folder
 - Open VS Code on this folder.
@@ -21,6 +24,4 @@ This one is for highlighting comment. The test file is under client/testFixture 
 
 ## Running the Test
 
-- Run `npm i -g vscode-tmgrammar-test` in this folder. This installs the command line tool vscode-tmgrammar-test. 
-- Run `vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t 'client/testFixture/highlight_comment.ion'` to do the test the comment highlighting feature. 
-- More about vscode-tmgrammar-test can be found here: https://github.com/PanAeon/vscode-tmgrammar-tes
+- Run `npm test` 
