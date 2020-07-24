@@ -36,6 +36,8 @@
 }
    [1, [2]] 
 --     ^^^ meta.structure.array.ion meta.structure.array.ion 
+   [1, [2, [3]]] 
+--         ^^^ meta.structure.array.ion meta.structure.array.ion meta.structure.array.ion
    [1, "string1"] 
 --  ^ meta.structure.array.ion constant.numeric.integer.ion 
    [1, "string1"] 
