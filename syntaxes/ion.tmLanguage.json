@@ -185,7 +185,7 @@
 			"begin": "\\{", 
 			"beginCaptures": {
 				"0": {
-					"name": "punctuation.definition.dictionary.begin.ion"
+					"name": "punctuation.definition.dictionary.begin.ion" 
 				}
 			}, 
 			"end": "\\}", 
@@ -196,12 +196,6 @@
 			}, 
 			"name": "meta.structure.dictionary.ion", 
 			"patterns": [
-				{
-					"include": "#strings"
-				}, 
-				{
-					"include": "#symbols"
-				}, 
 				{
 					"begin": ":", 
 					"beginCaptures": {
@@ -223,6 +217,54 @@
 						{
 							"match": "[^\\s,]", 
 							"name": "invalid.illegal.expected-dictionary-separator.ion"
+						}
+					]
+				}, 
+				{
+					"patterns": [
+						{
+							"begin": "\"",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.support.type.property-name.begin.ion"
+								}
+							},
+							"end": "\"",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.support.type.property-name.end.ion"
+								}
+							},
+							"name": "support.type.property-name.symbol.ion", 
+							"patterns": [
+								{
+									"include": "#escape"
+								}
+							]
+						}, 
+						{
+							"begin": "\\'",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.support.type.property-name.begin.ion"
+								}
+							},
+							"end": "\\'",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.support.type.property-name.end.ion"
+								}
+							},
+							"name": "support.type.property-name.symbol.ion",
+							"patterns": [
+								{
+									"include": "#escape"
+								}
+							]
+						}, 
+						{
+							"match": "[\\$_a-zA-Z][\\$_a-zA-Z0-9]*",
+							"name": "support.type.property-name.symbol.ion" 
 						}
 					]
 				}, 
@@ -274,4 +316,3 @@
 		}
 	}
 }
-

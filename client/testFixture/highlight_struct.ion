@@ -3,25 +3,25 @@
    { }
 -- ^^^ meta.structure.dictionary.ion
    { first : "Tom" , last: "Riddle" }
---   ^^^^^ meta.structure.dictionary.ion variable.language.symbol.ion
+--   ^^^^^ meta.structure.dictionary.ion support.type.property-name.symbol.ion
    { first : "Tom" , last: "Riddle" }
 --           ^^^^^ meta.structure.dictionary.ion string.quoted.double.ion 
    {center:{x:1.0, y:12.5}, radius:3}
---          ^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.dictionary.ion variable.language.symbol.ion 
+--          ^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.dictionary.ion support.type.property-name.symbol.ion 
    { '': 3 }
---   ^^ meta.structure.dictionary.ion variable.language.symbol.ion  
+--   ^^ meta.structure.dictionary.ion support.type.property-name.symbol.ion  
    { $33: 42 } 
---   ^^^ meta.structure.dictionary.ion variable.language.symbol.ion  
+--   ^^^ meta.structure.dictionary.ion support.type.property-name.symbol.ion  
    {
        center: { 
---     ^^^^^^ meta.structure.dictionary.ion variable.language.symbol.ion 
+--     ^^^^^^ meta.structure.dictionary.ion support.type.property-name.symbol.ion 
            x: 1.0, 
---         ^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.dictionary.ion variable.language.symbol.ion 
+--         ^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.dictionary.ion support.type.property-name.symbol.ion 
            y: 12.5 
 --            ^^^^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.dictionary.ion meta.structure.dictionary.value.ion constant.numeric.decimal.ion 
 		}, 
         radius: 3 
---      ^^^^^^ meta.structure.dictionary.ion variable.language.symbol.ion 
+--      ^^^^^^ meta.structure.dictionary.ion support.type.property-name.symbol.ion 
         other: {
             name: "name" 
 --                 ^^^^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.dictionary.ion meta.structure.dictionary.value.ion string.quoted.double.ion 
@@ -31,5 +31,10 @@
        name: {{1231}}
 --             ^^^^ meta.structure.dictionary.ion meta.structure.blob.ion markup.inline.raw 
    }
+   {"first": "Tom","last": "Riddle"} 
+--   ^^^^^ meta.structure.dictionary.ion support.type.property-name.symbol.ion
+   { "": 42 } 
+--   ^^ meta.structure.dictionary.ion support.type.property-name.symbol.ion
    {123: 123} 
 --  ^^^ meta.structure.dictionary.ion invalid.illegal.expected-dictionary-separator.ion 
+   
