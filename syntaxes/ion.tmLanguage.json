@@ -274,6 +274,34 @@
 				}
 			]
 		}, 
+		"arrays": {
+			"begin": "\\[", 
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.begin.ion"
+				}
+			}, 
+			"end": "\\]", 
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.end.ion"
+				}
+			}, 
+			"name": "meta.structure.array.ion", 
+			"patterns": [
+				{
+					"include": "#values"
+				}, 
+				{
+					"match": ",", 
+					"name": "punctuation.separator.array.ion" 
+				}, 
+				{
+					"match": "[^\\s\\]]", 
+					"name": "invalid.illegal.expected-array-separator.ion" 
+				}
+			]
+		}, 
 		"escape": {
 			"patterns": [
 				{
@@ -311,8 +339,12 @@
 				}, 
 				{
 					"include": "#structs" 
+				}, 
+				{
+					"include": "#arrays"
 				}
 			]
 		}
 	}
 }
+
