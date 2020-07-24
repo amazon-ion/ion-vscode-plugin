@@ -4,25 +4,7 @@
 	"scopeName": "source.ion",
 	"patterns": [
 		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#comments"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#numbers"
-		},
-		{
-			"include": "#blob"
-		},
-		{
-			"include": "#clob"
-		},
-		{
-			"include": "#symbols"
+			"include": "#values"
 		}
 	],
 	"repository": {
@@ -198,7 +180,100 @@
 					"name": "variable.language.symbol.ion"
 				}
 			]
-		},
+		}, 
+		"structs": {
+			"begin": "\\{", 
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.begin.ion" 
+				}
+			}, 
+			"end": "\\}", 
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.end.ion"
+				}
+			}, 
+			"name": "meta.structure.dictionary.ion", 
+			"patterns": [
+				{
+					"begin": ":", 
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.separator.dictionary.key-value.ion"
+						}
+					}, 
+					"end": "(,)|(?=\\})", 
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.separator.dictionary.pair.ion"
+						}
+					}, 
+					"name": "meta.structure.dictionary.value.ion", 
+					"patterns": [
+						{
+							"include": "#values" 
+						}, 
+						{
+							"match": "[^\\s,]", 
+							"name": "invalid.illegal.expected-dictionary-separator.ion"
+						}
+					]
+				}, 
+				{
+					"patterns": [
+						{
+							"begin": "\"",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.support.type.property-name.begin.ion"
+								}
+							},
+							"end": "\"",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.support.type.property-name.end.ion"
+								}
+							},
+							"name": "support.type.property-name.symbol.ion", 
+							"patterns": [
+								{
+									"include": "#escape"
+								}
+							]
+						}, 
+						{
+							"begin": "\\'",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.support.type.property-name.begin.ion"
+								}
+							},
+							"end": "\\'",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.support.type.property-name.end.ion"
+								}
+							},
+							"name": "support.type.property-name.symbol.ion",
+							"patterns": [
+								{
+									"include": "#escape"
+								}
+							]
+						}, 
+						{
+							"match": "[\\$_a-zA-Z][\\$_a-zA-Z0-9]*",
+							"name": "support.type.property-name.symbol.ion" 
+						}
+					]
+				}, 
+				{
+					"match": "[^\\s\\}]", 
+					"name": "invalid.illegal.expected-dictionary-separator.ion"
+				}
+			]
+		}, 
 		"escape": {
 			"patterns": [
 				{
@@ -208,6 +283,34 @@
 				{
 					"match": "\\\\.",
 					"name": "invalid.illegal.unrecognized-string-escape.ion"
+				}
+			]
+		}, 
+		"values": {
+			"patterns": [
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#blob"
+				},
+				{
+					"include": "#clob"
+				},
+				{
+					"include": "#symbols"
+				}, 
+				{
+					"include": "#structs" 
 				}
 			]
 		}
