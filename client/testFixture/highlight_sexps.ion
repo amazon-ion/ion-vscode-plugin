@@ -1,0 +1,70 @@
+-- SYNTAX TEST "source.ion" 
+
+   () 
+-- ^^ meta.structure.sexp.ion 
+   (!#%&*+-./;<=>?@^`|~) 
+--  ^^^^^^^^^^^^^^^^^^^ meta.structure.sexp.ion variable.language.symbol.ion
+   ( 'x' '+' 'y' ) 
+--    ^   ^   ^ meta.structure.sexp.ion variable.language.symbol.ion
+   ( x + y ) 
+--   ^ ^ ^ meta.structure.sexp.ion variable.language.symbol.ion
+   (x+y) 
+--  ^^^ meta.structure.sexp.ion variable.language.symbol.ion
+   (a==b&&c==d) 
+--  ^^^^^^^^^^ meta.structure.sexp.ion variable.language.symbol.ion
+   (a.b;) 
+--  ^^^^ meta.structure.sexp.ion variable.language.symbol.ion
+   ( 'a' '.' 'b' ';') 
+--    ^   ^   ^   ^ meta.structure.sexp.ion variable.language.symbol.ion
+   ((123)(456)) 
+--   ^^^  ^^^ meta.structure.sexp.ion variable.language.symbol.ion 
+   ([hello][there]) 
+--   ^^^^^  ^^^^^ meta.structure.sexp.ion variable.language.symbol.ion 
+   ([[hello], there]) 
+--    ^^^^^ meta.structure.sexp.ion variable.language.symbol.ion 
+   [(123), (456)] 
+--   ^^^    ^^^ meta.structure.sexp.ion variable.language.symbol.ion 
+   ({"name": "name1"}{"name": "name2"}) 
+--    ^^^^             ^^^^ meta.structure.sexp.ion support.type.property-name.symbol.ion 
+({
+    "name": "name1" 
+--   ^^^^ meta.structure.sexp.ion support.type.property-name.symbol.ion 
+ }
+ {
+    "name": "name2" 
+--           ^^^^^ meta.structure.sexp.ion meta.structure.dictionary.ion meta.structure.dictionary.value.ion string.quoted.double.ion 
+ }) 
+({
+    "field": {
+        "name": "name1" 
+--       ^^^^ meta.structure.sexp.ion meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.dictionary.ion support.type.property-name.symbol.ion 
+    }
+}) 
+{
+    "field": (name1) 
+--            ^^^^^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.sexp.ion variable.language.symbol.ion
+}
+   ((123)[456]{"field": "name1"}) 
+--   ^^^ meta.structure.sexp.ion meta.structure.sexp.ion variable.language.symbol.ion 
+   ((123)[456]{"field": "name1"}) 
+--        ^^^ meta.structure.sexp.ion meta.structure.array.ion constant.numeric.integer.ion
+   ((123)[456]{"field": "name1"}) 
+--              ^^^^^ meta.structure.sexp.ion meta.structure.dictionary.ion support.type.property-name.symbol.ion 
+   [(123), {"field": "name1"}] 
+--   ^^^ meta.structure.array.ion meta.structure.sexp.ion variable.language.symbol.ion 
+   [(123), {"field": "name1"}] 
+--           ^^^^^ meta.structure.array.ion meta.structure.dictionary.ion support.type.property-name.symbol.ion
+   [(123), {"field": "name1"}] 
+--                    ^^^^^ meta.structure.array.ion meta.structure.dictionary.ion meta.structure.dictionary.value.ion string.quoted.double.ion 
+{
+    "field": [(123), 456] 
+--   ^^^^^ meta.structure.dictionary.ion support.type.property-name.symbol.ion 
+}
+{
+    "field": [(123), 456] 
+--             ^^^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.array.ion meta.structure.sexp.ion variable.language.symbol.ion 
+} 
+{
+    "field": [(123), 456] 
+--                   ^^^ meta.structure.dictionary.ion meta.structure.dictionary.value.ion meta.structure.array.ion constant.numeric.integer.ion 
+}
