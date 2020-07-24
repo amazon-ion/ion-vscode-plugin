@@ -1,7 +1,7 @@
 
 :warning: **This repo is considered an early release, under active early development, and the APIs/features are subject to change.** :warning:
 
-# VSCode extension for ion 
+# VSCode extension for Ion 
 
 VSCode extension (plugin) that supports the Ion data format.  
 
