@@ -21,7 +21,19 @@
    ([hello][there]) 
 --   ^^^^^  ^^^^^ meta.structure.sexp.ion meta.structure.array.ion variable.language.symbol.ion 
    ([[hello], there]) 
---    ^^^^^ meta.structure.sexp.ion variable.language.symbol.ion 
+--    ^^^^^ meta.structure.sexp.ion meta.structure.array.ion variable.language.symbol.ion 
+   ([['hello'], there]) 
+--     ^^^^^ meta.structure.sexp.ion meta.structure.array.ion variable.language.symbol.ion 
+   ([["hello"], there]) 
+--     ^^^^^ meta.structure.sexp.ion meta.structure.array.ion string.quoted.double.ion 
+   ([[123_456.789_012], there]) 
+--    ^^^^^^^^^^^^^^^ meta.structure.sexp.ion meta.structure.array.ion constant.numeric.decimal.ion 
+   ([[2007-02-23T12:14:33.079-08:00], there]) 
+--    ^^^^^^^^^^^^^^^ meta.structure.sexp.ion meta.structure.array.ion constant.numeric.timestamp.ion 
+   ([[{{ VG8gaW5maW5pdHkuLi4gYW5kIGJleW9uZCE= }}], there]) 
+--       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.sexp.ion meta.structure.array.ion meta.structure.blob.ion markup.inline.raw 
+   ([[{{ "This is a CLOB of text." }}], there]) 
+--        ^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.sexp.ion meta.structure.array.ion meta.structure.clob.ion string.quoted.double.ion 
    [(123), (456)] 
 --   ^^^    ^^^ meta.structure.sexp.ion constant.numeric.integer.ion 
    ({"name": "name1"}{"name": "name2"}) 
