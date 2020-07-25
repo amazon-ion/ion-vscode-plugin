@@ -19,7 +19,7 @@
    ((123)(456)) 
 --   ^^^  ^^^ meta.structure.sexp.ion meta.structure.sexp.ion constant.numeric.integer.ion 
    ([hello][there]) 
---   ^^^^^  ^^^^^ meta.structure.sexp.ion variable.language.symbol.ion 
+--   ^^^^^  ^^^^^ meta.structure.sexp.ion meta.structure.array.ion variable.language.symbol.ion 
    ([[hello], there]) 
 --    ^^^^^ meta.structure.sexp.ion variable.language.symbol.ion 
    [(123), (456)] 
