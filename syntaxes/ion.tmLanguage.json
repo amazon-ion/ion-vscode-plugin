@@ -300,20 +300,11 @@
 			"name": "meta.structure.sexp.ion", 
 			"patterns": [
 				{
-					"include": "#structs" 
+					"include": "#values" 
 				}, 
 				{
-					"include": "#arrays" 
-				}, 
-				{
-					"include": "#sexps" 
-				}, 
-				{
-					"include": "#quoted-symbols" 
-				}, 
-				{
-					"match": "[\\$_a-zA-Z0-9\\!\\#\\%\\&\\*\\+\\-\\.\\/\\;\\<\\=\\>\\?\\@\\^\\`\\|\\~]",
-					"name": "variable.language.symbol.ion"
+					"match": "[\\!\\#\\%\\&\\*\\+\\-\\.\\/\\;\\<\\=\\>\\?\\@\\^\\`\\|\\~]", 
+					"name": "variable.language.symbol.ion" 
 				}
 			]
 		}, 
