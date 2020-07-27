@@ -1,0 +1,46 @@
+-- SYNTAX TEST "source.ion" 
+
+    int32 :: 12 
+--  ^^^^^ support.type.annotation.ion 
+    int32 :: 12 
+--        ^^ punctuation.separator.annotation.ion 
+    '' :: 1 
+--  ^^ support.type.annotation.ion 
+    '' :: 1 
+--        ^ constant.numeric.integer.ion
+    list :: [1, 2, 3] 
+--  ^^^^ support.type.annotation.ion 
+    list :: [1, 2, 3] 
+--          ^^^^^^^^^ meta.structure.array.ion 
+    string123 :: apple 
+--  ^^^^^^^^^ support.type.annotation.ion 
+    string123 :: apple 
+--               ^^^^^ variable.language.symbol.ion 
+    string123 :: "apple" 
+--  ^^^^^^^^^ support.type.annotation.ion 
+    string123 :: "apple" 
+--               ^^^^^ string.quoted.double.ion 
+    { field: something::'another thing'::value } 
+--    ^^^^^ support.type.property-name.symbol.ion 
+    { field: something::'another thing'::value } 
+--           ^^^^^^^^^ support.type.annotation.ion 
+    { field: something::'another thing'::value } 
+--                    ^^ punctuation.separator.annotation.ion 
+    { field: something::'another thing'::value } 
+--                      ^^^^^^^^^^^^^^^ support.type.annotation.ion 
+    { field: something::'another thing'::value } 
+--                                     ^^ punctuation.separator.annotation.ion 
+    { field: something::'another thing'::value } 
+--                                     ^^ punctuation.separator.annotation.ion 
+    { annotation:: field_name: value } 
+--    ^^^^^^^^^^ support.type.property-name.symbol.ion 
+    { annotation:: field_name: value } 
+--               ^           ^ invalid.illegal.expected-dictionary-separator.ion 
+{ 
+  field: something::'another thing'::value 
+--       ^^^^^^^^^  ^^^^^^^^^^^^^^^ support.type.annotation.ion 
+} 
+{ 
+  field: something::'another thing'::value 
+--                ^^               ^^ punctuation.separator.annotation.ion 
+} 
