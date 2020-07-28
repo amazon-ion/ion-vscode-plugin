@@ -157,51 +157,51 @@
 			"patterns": [
 				{
 					"include": "#quoted-symbols"
-				}, 
+				},
 				{
 					"include": "#unquoted-symbols"
 				}
 			]
-		}, 
+		},
 		"structs": {
-			"begin": "\\{", 
+			"begin": "\\{",
 			"beginCaptures": {
 				"0": {
-					"name": "punctuation.definition.dictionary.begin.ion" 
+					"name": "punctuation.definition.dictionary.begin.ion"
 				}
-			}, 
-			"end": "\\}", 
+			},
+			"end": "\\}",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.dictionary.end.ion"
 				}
-			}, 
-			"name": "meta.structure.dictionary.ion", 
+			},
+			"name": "meta.structure.dictionary.ion",
 			"patterns": [
 				{
-					"begin": ":", 
+					"begin": ":",
 					"beginCaptures": {
 						"0": {
 							"name": "punctuation.separator.dictionary.key-value.ion"
 						}
-					}, 
-					"end": "(,)|(?=\\})", 
+					},
+					"end": "(,)|(?=\\})",
 					"endCaptures": {
 						"1": {
 							"name": "punctuation.separator.dictionary.pair.ion"
 						}
-					}, 
-					"name": "meta.structure.dictionary.value.ion", 
+					},
+					"name": "meta.structure.dictionary.value.ion",
 					"patterns": [
 						{
-							"include": "#values" 
-						}, 
+							"include": "#values"
+						},
 						{
-							"match": "[^\\s,]", 
+							"match": "[^\\s,]",
 							"name": "invalid.illegal.expected-dictionary-separator.ion"
 						}
 					]
-				}, 
+				},
 				{
 					"patterns": [
 						{
@@ -217,13 +217,13 @@
 									"name": "punctuation.support.type.property-name.end.ion"
 								}
 							},
-							"name": "support.type.property-name.symbol.ion", 
+							"name": "support.type.property-name.symbol.ion",
 							"patterns": [
 								{
 									"include": "#escape"
 								}
 							]
-						}, 
+						},
 						{
 							"begin": "\\'",
 							"beginCaptures": {
@@ -243,71 +243,118 @@
 									"include": "#escape"
 								}
 							]
-						}, 
+						},
 						{
 							"match": "[\\$_a-zA-Z][\\$_a-zA-Z0-9]*",
-							"name": "support.type.property-name.symbol.ion" 
+							"name": "support.type.property-name.symbol.ion"
 						}
 					]
-				}, 
+				},
 				{
-					"match": "[^\\s\\}]", 
+					"match": "[^\\s\\}]",
 					"name": "invalid.illegal.expected-dictionary-separator.ion"
 				}
 			]
-		}, 
+		},
 		"arrays": {
-			"begin": "\\[", 
+			"begin": "\\[",
 			"beginCaptures": {
 				"0": {
 					"name": "punctuation.definition.array.begin.ion"
 				}
-			}, 
-			"end": "\\]", 
+			},
+			"end": "\\]",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.array.end.ion"
 				}
-			}, 
-			"name": "meta.structure.array.ion", 
+			},
+			"name": "meta.structure.array.ion",
 			"patterns": [
 				{
 					"include": "#values"
-				}, 
+				},
 				{
-					"match": ",", 
-					"name": "punctuation.separator.array.ion" 
-				}, 
+					"match": ",",
+					"name": "punctuation.separator.array.ion"
+				},
 				{
-					"match": "[^\\s\\]]", 
-					"name": "invalid.illegal.expected-array-separator.ion" 
+					"match": "[^\\s\\]]",
+					"name": "invalid.illegal.expected-array-separator.ion"
 				}
 			]
-		}, 
+		},
 		"sexps": {
-			"begin": "\\(", 
+			"begin": "\\(",
 			"beginCaptures": {
 				"0": {
 					"name": "punctuation.definition.sexps.begin.ion"
 				}
-			}, 
-			"end": "\\)", 
+			},
+			"end": "\\)",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.sexps.end.ion"
 				}
-			}, 
-			"name": "meta.structure.sexp.ion", 
+			},
+			"name": "meta.structure.sexp.ion",
 			"patterns": [
 				{
-					"include": "#values" 
-				}, 
+					"include": "#values"
+				},
 				{
-					"match": "[\\!\\#\\%\\&\\*\\+\\-\\.\\/\\;\\<\\=\\>\\?\\@\\^\\`\\|\\~]", 
-					"name": "variable.language.symbol.ion" 
+					"match": "[\\!\\#\\%\\&\\*\\+\\-\\.\\/\\;\\<\\=\\>\\?\\@\\^\\`\\|\\~]",
+					"name": "variable.language.symbol.ion"
 				}
 			]
-		}, 
+		},
+		"annotations": {
+			"patterns": [
+				{
+					"match": "([\\$_a-zA-Z][\\$_a-zA-Z0-9]*)\\s*(\\:\\:)",
+					"captures": {
+						"1": {
+							"name": "support.type.annotation.ion"
+						},
+						"2": {
+							"name": "punctuation.separator.annotation.ion"
+						}
+					}
+				},
+				{
+					"match": "(\\'[^\\']*\\')\\s*(\\:\\:)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"begin": "\\'",
+									"beginCaptures": {
+										"0": {
+											"name": "punctuation.definition.symbol.begin.ion"
+										}
+									},
+									"end": "[\\']",
+									"endCaptures": {
+										"0": {
+											"name": "punctuation.definition.symbol.end.ion"
+										}
+									},
+									"name": "support.type.annotation.ion",
+									"patterns": [
+										{
+											"include": "#escape"
+										}
+									]
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.separator.annotation.ion"
+						}
+					}
+				}
+			]
+		},
 		"quoted-symbols": {
 			"begin": "\\'",
 			"beginCaptures": {
@@ -324,14 +371,14 @@
 			"name": "variable.language.symbol.ion",
 			"patterns": [
 				{
-					"include": "#escape" 
+					"include": "#escape"
 				}
 			]
-		}, 
+		},
 		"unquoted-symbols": {
 			"match": "[\\$_a-zA-Z][\\$_a-zA-Z0-9]*",
 			"name": "variable.language.symbol.ion"
-		}, 
+		},
 		"escape": {
 			"patterns": [
 				{
@@ -343,9 +390,12 @@
 					"name": "invalid.illegal.unrecognized-string-escape.ion"
 				}
 			]
-		}, 
+		},
 		"values": {
 			"patterns": [
+				{
+					"include": "#annotations"
+				},
 				{
 					"include": "#keywords"
 				},
@@ -366,13 +416,13 @@
 				},
 				{
 					"include": "#symbols"
-				}, 
+				},
 				{
-					"include": "#structs" 
-				}, 
+					"include": "#structs"
+				},
 				{
 					"include": "#arrays"
-				}, 
+				},
 				{
 					"include": "#sexps"
 				}
@@ -380,4 +430,3 @@
 		}
 	}
 }
-
