@@ -7,19 +7,19 @@
     '' :: 1 
 --  ^^ support.type.annotation.ion 
     '' :: 1 
---        ^ constant.numeric.integer.ion
+--        ^ constant.numeric.integer.ion 
     list :: [1, 2, 3] 
 --  ^^^^ support.type.annotation.ion 
     list :: [1, 2, 3] 
 --          ^^^^^^^^^ meta.structure.array.ion 
-    string123 :: apple 
---  ^^^^^^^^^ support.type.annotation.ion 
-    string123 :: apple 
---               ^^^^^ variable.language.symbol.ion 
-    string123 :: "apple" 
---  ^^^^^^^^^ support.type.annotation.ion 
-    string123 :: "apple" 
---               ^^^^^ string.quoted.double.ion 
+    $123 :: apple 
+--  ^^^^ support.type.annotation.ion 
+    $123 :: apple 
+--          ^^^^^ variable.language.symbol.ion 
+    $123 :: "apple" 
+--  ^^^^ support.type.annotation.ion 
+    $123 :: "apple" 
+--           ^^^^^ string.quoted.double.ion 
     { field: something::'another thing'::value } 
 --    ^^^^^ support.type.property-name.symbol.ion 
     { field: something::'another thing'::value } 
@@ -28,8 +28,6 @@
 --                    ^^ punctuation.separator.annotation.ion 
     { field: something::'another thing'::value } 
 --                      ^^^^^^^^^^^^^^^ support.type.annotation.ion 
-    { field: something::'another thing'::value } 
---                                     ^^ punctuation.separator.annotation.ion 
     { field: something::'another thing'::value } 
 --                                     ^^ punctuation.separator.annotation.ion 
     { annotation:: field_name: value } 
@@ -44,3 +42,45 @@
   field: something::'another thing'::value 
 --                ^^               ^^ punctuation.separator.annotation.ion 
 } 
+    sexps :: (abc)
+--  ^^^^^ support.type.annotation.ion 
+    sexps :: (abc)
+--        ^^ punctuation.separator.annotation.ion 
+    sexps :: (abc)
+--           ^^^^^ meta.structure.sexp.ion 
+    (symbol :: abc)
+--   ^^^^^^ meta.structure.sexp.ion support.type.annotation.ion 
+    (symbol :: abc)
+--          ^^ meta.structure.sexp.ion punctuation.separator.annotation.ion 
+    (symbol :: abc)
+--             ^^^ meta.structure.sexp.ion variable.language.symbol.ion 
+    blob :: {{ VG8gaW5maW5pdHkuLi4gYW5kIGJleW9uZCE= }}
+--  ^^^^ support.type.annotation.ion 
+    blob :: {{ VG8gaW5maW5pdHkuLi4gYW5kIGJleW9uZCE= }}
+--       ^^ punctuation.separator.annotation.ion 
+    blob :: {{ VG8gaW5maW5pdHkuLi4gYW5kIGJleW9uZCE= }}
+--          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.blob.ion 
+    clob :: {{ "This is a CLOB of text." }} 
+--  ^^^^ support.type.annotation.ion 
+    clob :: {{ "This is a CLOB of text." }} 
+--       ^^ punctuation.separator.annotation.ion 
+    clob :: {{ "This is a CLOB of text." }} 
+--          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.clob.ion 
+    timestamp :: 2007-02-23T20:14:33.079Z         
+--  ^^^^^^^^^ support.type.annotation.ion 
+    timestamp :: 2007-02-23T20:14:33.079Z         
+--            ^^ punctuation.separator.annotation.ion 
+    timestamp :: 2007-02-23T20:14:33.079Z         
+--               ^^^^^^^^^^^^^^^^^^^^^^^^ constant.numeric.timestamp.ion 
+   $45::false 
+-- ^^^ support.type.annotation.ion 
+   $45::false 
+--    ^^ punctuation.separator.annotation.ion 
+   $45::false 
+--      ^^^^^ constant.language.bool.ion 
+   [number :: 1, 2, 3] 
+--  ^^^^^^ meta.structure.array.ion support.type.annotation.ion 
+   [number :: 1, 2, 3] 
+--         ^^ meta.structure.array.ion punctuation.separator.annotation.ion 
+   [number :: 1, 2, 3] 
+--            ^  ^  ^ meta.structure.array.ion constant.numeric.integer.ion 
