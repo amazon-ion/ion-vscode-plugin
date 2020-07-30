@@ -12,8 +12,11 @@
 		"url": "https://github.com/amzn/ion-vscode-plugin"
 	},
 	"dependencies": {
-		"vscode-languageserver": "^6.1.1",
-		"vscode-languageserver-textdocument": "^1.0.1"
+		"ion-js": "^3.1.2",
+		"vscode-languageserver": "^5.2.1"
+	},
+	"devDependencies": {
+		"antlr4": "^4.8.0"
 	},
 	"scripts": {}
 }
