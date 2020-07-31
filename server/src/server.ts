@@ -101,7 +101,7 @@ function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
 	if (!result) {
 		result = connection.workspace.getConfiguration({
 			scopeUri: resource,
-			section: 'languageServerExample'
+			section: 'languageServer'
 		});
 		documentSettings.set(resource, result);
 	}
@@ -123,11 +123,18 @@ documents.onDidChangeContent(change => {
 class CustomErrorListener {
 	private diagnostics: Diagnostic[] = [];
 
-	public syntaxError(recognizer: any, offendingSymbol: any /*Token*/, line: number, column: number, msg: string, e: any): void {
+	public syntaxError(recognizer: any, offendingSymbol: any /*Token*/, line: number, column: number, msg: string, e: any): void { 
+		console.log('recognizer -> ', recognizer); 
+		console.log ('offendingSymbol -> ', offendingSymbol); 
+		console.log ('line -> ', line); 
+		console.log ('column -> ', column); 
+		console.log ('msg -> ', msg); 
+		console.log ('e -> ', e); 
+		
 		let diagnostic: Diagnostic = {
 			severity: DiagnosticSeverity.Warning,
-			range: Range.create(offendingSymbol.line - 1, offendingSymbol.start,
-								offendingSymbol.line - 1, offendingSymbol.stop + 1),
+			range: Range.create(offendingSymbol.line - 1, column,
+								offendingSymbol.line - 1, column + offendingSymbol.stop - offendingSymbol.start + 1),
 			message: msg,
 			source: 'ex',
 		};
@@ -159,15 +166,11 @@ const IonTextListener = require('./IonTextListener.js');
 
 let documentText = "";
 
-console.log ('I am here. '); 
-
 async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 	// In this simple example we get the settings for every validate run.
 	let settings = await getDocumentSettings(textDocument.uri);
 
 	documentText = textDocument.getText(); 
-	console.log (documentText); 
-
 	const chars = new antlr4.InputStream(documentText); 
 	const lexer = new IonTextLexer.IonTextLexer(chars); 
 	lexer.strictMode = false; 
