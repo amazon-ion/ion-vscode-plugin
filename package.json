@@ -1,14 +1,14 @@
 {
-	"name": "ion-lsp",
-	"description": "LSP for ion",
-	"author": "ion-team",
+	"name": "ion-extension",
+	"description": "Ion Extension to support the Ion data format on VSCode",
+	"author": "The Ion Team",
 	"license": "Apache 2.0",
 	"version": "0.1.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/amzn/ion-vscode-plugin"
 	},
-	"publisher": "ion-team",
+	"publisher": "TheIonTeam",
 	"categories": [],
 	"keywords": [
 		"multi-root ready"
