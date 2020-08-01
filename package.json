@@ -1,7 +1,7 @@
 {
 	"name": "ion-extension",
-	"description": "VSCode extension for ion",
-	"author": "TheIonTeam",
+	"description": "Ion Extension to support the Ion data format on VSCode",
+	"author": "The Ion Team",
 	"license": "Apache 2.0",
 	"version": "0.1.0",
 	"repository": {

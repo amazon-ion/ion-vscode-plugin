@@ -1,7 +1,7 @@
 {
-	"name": "ion-lsp-client",
+	"name": "ion-extension-client",
 	"description": "VSCode LSP client for Ion. ",
-	"author": "TheIonTeam",
+	"author": "The Ion Team",
 	"license": "Apache 2.0",
 	"version": "0.0.1",
 	"publisher": "TheIonTeam",
