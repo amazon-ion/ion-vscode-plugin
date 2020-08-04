@@ -1,0 +1,29 @@
+-- SYNTAX TEST "source.ion" 
+
+   'myVar2'
+--  ^^^^^^ variable.language.symbol.ion 
+   myVar2
+-- ^^^^^^ variable.language.symbol.ion 
+   '\'ahoy\'' 
+--  ^^^^^^^^ variable.language.symbol.ion 
+   'hi ho'
+--  ^^^^^ variable.language.symbol.ion 
+   ''
+-- ^^ variable.language.symbol.ion 
+   $theo 
+-- ^^^^^ variable.language.symbol.ion 
+   $1 
+-- ^^ variable.language.symbol.ion 
+   '_I_am_a_symbol_' 
+-- ^^^^^^^^^^^^^^^^^ variable.language.symbol.ion 
+   _I_am_a_symbol
+-- ^^^^^^^^^^^^^^ variable.language.symbol.ion 
+   'this_is_also_a_symbol' 
+-- ^^^^^^^^^^^^^^^^^^^^^^^ variable.language.symbol.ion 
+   '\" this is another symbol\" ' 
+-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ variable.language.symbol.ion 
+   '9087987' 
+-- ^^^^^^^^^ variable.language.symbol.ion 
+   '2001-01-01T' 
+-- ^^^^^^^^^^^^^ variable.language.symbol.ion 
+

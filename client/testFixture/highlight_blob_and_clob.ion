@@ -1,0 +1,20 @@
+-- SYNTAX TEST "source.ion" 
+
+   {{+AB/}}
+--   ^^^^ meta.structure.blob.ion markup.inline.raw 
+   {{ VG8gaW5maW5pdHkuLi4gYW5kIGJleW9uZCE= }}
+--    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.blob.ion markup.inline.raw 
+   {{ VG8gaW5maW5pdHkuLi4gYW5kIGJleW9uZCE= }}
+--    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.blob.ion markup.inline.raw 
+   {{  QSB CIEM  gRC B F IEYg Ry BI IEk gSi BLIE w   gTS B OI       E8 g UC BRI FIgUy BU IF Ug ViB XI F gg WS B a}}
+--     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.blob.ion markup.inline.raw 
+
+   {{ "This is a CLOB of text." }} 
+--     ^^^^^^^^^^^^^^^^^^^^^^ meta.structure.clob.ion string.quoted.double.ion
+   {{
+     '''Another clob with user-defined encoding, '''
+--       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.clob.ion string.quoted.triple.ion
+     '''this time on multiple lines.''' 
+--       ^^^^^^^^^^^^^^^^^^^^^^^^ meta.structure.clob.ion string.quoted.triple.ion
+   }} 
+   
