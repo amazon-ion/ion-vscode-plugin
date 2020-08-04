@@ -11,7 +11,7 @@ export let platformEol: string;
  */
 export async function activate(docUri: vscode.Uri) {
 	// The extensionId is `publisher.name` from package.json
-	const ext = vscode.extensions.getExtension('ion-team.ion-lsp')!;
+	const ext = vscode.extensions.getExtension('TheIonTeam.ion-extension')!;
 
 	console.log ('ext ->', ext); 
 
@@ -30,7 +30,7 @@ async function sleep(ms: number) {
 }
 
 export const getDocPath = (p: string) => {
-	return path.resolve(__dirname, '../../testFixture', p);
+	return path.resolve(__dirname, '../../testFixture/diagnostics', p);
 };
 export const getDocUri = (p: string) => {
 	return vscode.Uri.file(getDocPath(p));

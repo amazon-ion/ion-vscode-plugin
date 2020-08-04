@@ -124,19 +124,11 @@ class CustomErrorListener {
 	private diagnostics: Diagnostic[] = [];
 
 	public syntaxError(recognizer: any, offendingSymbol: any /*Token*/, line: number, column: number, msg: string, e: any): void { 
-		console.log('recognizer -> ', recognizer); 
-		console.log ('offendingSymbol -> ', offendingSymbol); 
-		console.log ('line -> ', line); 
-		console.log ('column -> ', column); 
-		console.log ('msg -> ', msg); 
-		console.log ('e -> ', e); 
-		
 		let diagnostic: Diagnostic = {
-			severity: DiagnosticSeverity.Warning,
-			range: Range.create(offendingSymbol.line - 1, column,
-								offendingSymbol.line - 1, column + offendingSymbol.stop - offendingSymbol.start + 1),
-			message: msg,
-			source: 'ex',
+			severity: DiagnosticSeverity.Warning, 
+			range: Range.create(line - 1, column, line - 1, column + offendingSymbol.stop - offendingSymbol.start + 1),
+			message: this._getErrorMessage (msg, offendingSymbol), 
+			source: 'ex', 
 		};
 		this.diagnostics.push(diagnostic);
 	}
@@ -156,6 +148,35 @@ class CustomErrorListener {
 
 	public getDiagnostics(): Diagnostic[] {
 		return this.diagnostics;
+	}
+
+	private _getErrorMessage (msg: string, offendingSymbol: any) : string {
+		let text: string = offendingSymbol.source[1].strdata; 
+		let start: number = offendingSymbol.start; 
+		console.log (offendingSymbol); 
+		console.log (text); 
+
+		let space = ['\t', '\v', '\n', '\r', '\b', '\f', ' ']; 
+
+		if (text[start] === '{' && start >= 1 && text[start - 1] === '{'){	// blob or clob 
+			let i : number = start + 1; 
+			while (i < text.length && space.includes (text[i]) ){
+				i ++; 
+			}
+			let j: number = i; 
+			while (j < text.length && text[j] != '}'){  // Find the close curly brace. 
+				j ++; 
+			}
+			if (j === text.length || j === text.length - 1 || text[j + 1] != '}'){  // text[j] === '}' or j === text.length 
+				msg = 'Unmatched curly braces'; 
+			} else if (text[i] === '\"' || (i + 3 < text.length && text[i] === '\'' && text[i + 1] === '\'' && text[i + 2] === '\'')){  // clob
+				msg = 'Invalid clob'; 
+			} else {  // blob 
+				msg = 'Invalid blob'; 
+			}
+		}
+
+		return msg; 
 	}
 }
 

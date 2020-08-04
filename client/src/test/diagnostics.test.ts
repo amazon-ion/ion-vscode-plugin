@@ -3,11 +3,44 @@ import * as assert from 'assert';
 import { getDocUri, activate } from './helper';
 
 suite('Should get diagnostics', () => {
-	const docUri = getDocUri('diagnostics.ion');
-
-	test('symbol check', async () => {
-		await testDiagnostics(docUri, [
-			{ message: 'no viable alternative at input \'{\\n  name: "name1", \\n  1\'', range: toRange(2, 2, 2, 3), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
+	test('blob check 1', async () => {
+		await testDiagnostics(getDocUri('blob1.ion'), [
+			{ message: 'Invalid blob', range: toRange(0, 1, 0, 2), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
+		]);
+	});
+	test('blob check 2', async () => {
+		await testDiagnostics(getDocUri('blob2.ion'), [
+			{ message: 'Invalid blob', range: toRange(0, 1, 0, 2), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
+		]);
+	});
+	test('blob check 3', async () => {
+		await testDiagnostics(getDocUri('blob3.ion'), [
+			{ message: 'Unmatched curly braces', range: toRange(0, 1, 0, 2), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
+		]);
+	});
+	test('blob check 4', async () => {
+		await testDiagnostics(getDocUri('blob4.ion'), [
+			{ message: 'Unmatched curly braces', range: toRange(0, 1, 0, 2), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
+		]);
+	});
+	test('clob check 1', async () => {
+		await testDiagnostics(getDocUri('clob1.ion'), [
+			{ message: 'Invalid clob', range: toRange(0, 1, 0, 2), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
+		]);
+	});
+	test('clob check 2', async () => {
+		await testDiagnostics(getDocUri('clob2.ion'), [
+			{ message: 'Invalid clob', range: toRange(0, 1, 0, 2), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
+		]);
+	});
+	test('clob check 3', async () => {
+		await testDiagnostics(getDocUri('clob3.ion'), [
+			{ message: 'Invalid clob', range: toRange(0, 1, 0, 2), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
+		]);
+	});
+	test('clob check 4', async () => {
+		await testDiagnostics(getDocUri('clob4.ion'), [
+			{ message: 'Invalid clob', range: toRange(0, 1, 0, 2), severity: vscode.DiagnosticSeverity.Warning, source: 'ex' }
 		]);
 	});
 });
