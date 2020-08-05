@@ -1,3 +1,4 @@
+out
 node_modules
 .vscode-test
 
@@ -109,7 +110,7 @@ dist/
 flycheck_*.el
 
 # server auth directory
-
+/server/
 
 # projectiles files
 .projectile

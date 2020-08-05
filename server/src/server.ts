@@ -5,9 +5,10 @@ import {
 	InitializeParams,
 	ProposedFeatures,
 	Range,
-	TextDocument,
-	TextDocuments
+	TextDocuments, 
+	TextDocumentSyncKind
 } from 'vscode-languageserver';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 import * as ion from 'ion-js';
 
 // Create a connection for the server. The connection uses Node's IPC as a transport.
@@ -16,12 +17,12 @@ let connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager. The text document manager
 // supports full document sync only
-let documents: TextDocuments = new TextDocuments();
+let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 connection.onInitialize((params: InitializeParams) => {
 	return {
 		capabilities: {
-			textDocumentSync: documents.syncKind,
+			textDocumentSync: TextDocumentSyncKind.Incremental,
 			// Tell the client that the server supports code completion
 			completionProvider: {
 				resolveProvider: true
@@ -112,9 +113,9 @@ class CustomErrorListener {
 }
 
 const antlr4 = require('antlr4');
-const IonTextLexer = require('./IonTextLexer.js');
-const IonTextParser = require('./IonTextParser.js');
-const IonTextListener = require('./IonTextListener.js');
+const IonTextLexer = require('../ion-js/IonTextLexer.js');
+const IonTextParser = require('../ion-js/IonTextParser.js');
+const IonTextListener = require('../ion-js/IonTextListener.js');
 
 let documentText = "";
 
