@@ -11,19 +11,14 @@ import {
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import * as ion from 'ion-js';
 
-// Create a connection for the server. The connection uses Node's IPC as a transport.
-// Also include all preview / proposed LSP features.
 let connection = createConnection(ProposedFeatures.all);
 
-// Create a simple text document manager. The text document manager
-// supports full document sync only
 let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 connection.onInitialize((params: InitializeParams) => {
 	return {
 		capabilities: {
 			textDocumentSync: TextDocumentSyncKind.Incremental,
-			// Tell the client that the server supports code completion
 			completionProvider: {
 				resolveProvider: true
 			},
@@ -35,12 +30,9 @@ connection.onInitialize((params: InitializeParams) => {
 connection.onInitialized(() => {});
 
 connection.onDidChangeConfiguration(change => {
-	// Revalidate all open text documents
 	documents.all().forEach(validateTextDocument);
 });
 
-// The content of a text document has changed. This event is emitted
-// when the text document first opened or when its content has changed.
 documents.onDidChangeContent(change => {
 	validateTextDocument(change.document);
 });
