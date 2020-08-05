@@ -42,14 +42,11 @@ class CustomErrorListener {
 	private diagnostics: Diagnostic[] = [];
 
 	public syntaxError(recognizer: any, offendingSymbol: any /*Token*/, line: number, column: number, msg: string, e: any): void { 
-		console.log (offendingSymbol); 
-		
 		let lineInEditor = line - 1; 
-		
 		let diagnostic: Diagnostic = {
 			severity: DiagnosticSeverity.Warning, 
 			range: Range.create(lineInEditor, column, lineInEditor, column + offendingSymbol.stop - offendingSymbol.start + 1),
-			message: this._getErrorMessage (msg, offendingSymbol), 
+			message: msg, 
 			source: 'ex', 
 		};
 		this.diagnostics.push(diagnostic);
@@ -70,37 +67,6 @@ class CustomErrorListener {
 
 	public getDiagnostics(): Diagnostic[] {
 		return this.diagnostics;
-	}
-
-	private _getErrorMessage (msg: string, offendingSymbol: any) : string {
-		let text: string = offendingSymbol.source[1].strdata; 
-		let errorPiece: string = text.substring (32, text.length - 1); 
-		let start: number = offendingSymbol.start; 
-		console.log (offendingSymbol); 
-		console.log (text); 
-		console.log (errorPiece); 
-
-		let space = ['\t', '\v', '\n', '\r', '\b', '\f', ' ']; 
-
-		if (text[start] === '{' && start >= 1 && text[start - 1] === '{'){	// blob or clob 
-			let i : number = start + 1; 
-			while (i < text.length && space.includes (text[i]) ){
-				i ++; 
-			}
-			let j: number = i; 
-			while (j < text.length && text[j] != '}'){  // Find the close curly brace. 
-				j ++; 
-			}
-			if (j === text.length || j === text.length - 1 || text[j + 1] != '}'){  
-				msg = 'Unmatched curly braces'; 
-			} else if (text[i] === '\"' || (i + 3 < text.length && text[i] === '\'' && text[i + 1] === '\'' && text[i + 2] === '\'')){  // clob
-				msg = 'Invalid clob'; 
-			} else {  // blob 
-				msg = 'Invalid blob'; 
-			}
-		}
-
-		return msg; 
 	}
 }
 
