@@ -1,9 +1,5 @@
-client/out
-server/out/server.js
-server/out/server.js.map
 node_modules
 .vscode-test
-
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,emacs,intellij+all,eclipse,visualstudiocode,visualstudio,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,emacs,intellij+all,eclipse,visualstudiocode,visualstudio,node
@@ -112,6 +108,9 @@ dist/
 # Flycheck
 flycheck_*.el
 
+# server auth directory
+
+
 # projectiles files
 .projectile
 
@@ -170,6 +169,9 @@ cmake-build-*/
 
 # File-based project format
 *.iws
+
+# IntelliJ
+out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

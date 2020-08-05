@@ -2,7 +2,6 @@ import {
 	createConnection,
 	Diagnostic,
 	DiagnosticSeverity,
-	DidChangeConfigurationNotification,
 	InitializeParams,
 	ProposedFeatures,
 	Range,
@@ -19,27 +18,7 @@ let connection = createConnection(ProposedFeatures.all);
 // supports full document sync only
 let documents: TextDocuments = new TextDocuments();
 
-let hasConfigurationCapability: boolean = false;
-let hasWorkspaceFolderCapability: boolean = false;
-let hasDiagnosticRelatedInformationCapability: boolean = false;
-
 connection.onInitialize((params: InitializeParams) => {
-	let capabilities = params.capabilities;
-
-	// Does the client support the `workspace/configuration` request?
-	// If not, we will fall back using global settings
-	hasConfigurationCapability = !!(
-		capabilities.workspace && !!capabilities.workspace.configuration
-	);
-	hasWorkspaceFolderCapability = !!(
-		capabilities.workspace && !!capabilities.workspace.workspaceFolders
-	);
-	hasDiagnosticRelatedInformationCapability = !!(
-		capabilities.textDocument &&
-		capabilities.textDocument.publishDiagnostics &&
-		capabilities.textDocument.publishDiagnostics.relatedInformation
-	);
-
 	return {
 		capabilities: {
 			textDocumentSync: documents.syncKind,
@@ -47,70 +26,16 @@ connection.onInitialize((params: InitializeParams) => {
 			completionProvider: {
 				resolveProvider: true
 			},
-			documentFormattingProvider: true,
-			documentHighlightProvider: true,
+			documentFormattingProvider: true
 		}
 	};
 });
 
-connection.onInitialized(() => {
-	if (hasConfigurationCapability) {
-		// Register for all configuration changes.
-		connection.client.register(DidChangeConfigurationNotification.type, undefined);
-	}
-	if (hasWorkspaceFolderCapability) {
-		connection.workspace.onDidChangeWorkspaceFolders(_event => {
-			connection.console.log('Workspace folder change event received.');
-		});
-	}
-});
-
-// The example settings
-interface ExampleSettings {
-	maxNumberOfProblems: number;
-}
-
-// The global settings, used when the `workspace/configuration` request is not supported by the client.
-// Please note that this is not the case when using this server with the client provided in this example
-// but could happen with other clients.
-const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
-let globalSettings: ExampleSettings = defaultSettings;
-
-// Cache the settings of all open documents
-let documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
+connection.onInitialized(() => {});
 
 connection.onDidChangeConfiguration(change => {
-	if (hasConfigurationCapability) {
-		// Reset all cached document settings
-		documentSettings.clear();
-	} else {
-		globalSettings = <ExampleSettings>(
-			(change.settings.languageServerExample || defaultSettings)
-		);
-	}
-
 	// Revalidate all open text documents
 	documents.all().forEach(validateTextDocument);
-});
-
-function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
-	if (!hasConfigurationCapability) {
-		return Promise.resolve(globalSettings);
-	}
-	let result = documentSettings.get(resource);
-	if (!result) {
-		result = connection.workspace.getConfiguration({
-			scopeUri: resource,
-			section: 'languageServer'
-		});
-		documentSettings.set(resource, result);
-	}
-	return result;
-}
-
-// Only keep settings for open documents
-documents.onDidClose(e => {
-	documentSettings.delete(e.document.uri);
 });
 
 // The content of a text document has changed. This event is emitted
@@ -124,9 +49,13 @@ class CustomErrorListener {
 	private diagnostics: Diagnostic[] = [];
 
 	public syntaxError(recognizer: any, offendingSymbol: any /*Token*/, line: number, column: number, msg: string, e: any): void { 
+		console.log (offendingSymbol); 
+		
+		let lineInEditor = line - 1; 
+		
 		let diagnostic: Diagnostic = {
 			severity: DiagnosticSeverity.Warning, 
-			range: Range.create(line - 1, column, line - 1, column + offendingSymbol.stop - offendingSymbol.start + 1),
+			range: Range.create(lineInEditor, column, lineInEditor, column + offendingSymbol.stop - offendingSymbol.start + 1),
 			message: this._getErrorMessage (msg, offendingSymbol), 
 			source: 'ex', 
 		};
@@ -152,9 +81,11 @@ class CustomErrorListener {
 
 	private _getErrorMessage (msg: string, offendingSymbol: any) : string {
 		let text: string = offendingSymbol.source[1].strdata; 
+		let errorPiece: string = text.substring (32, text.length - 1); 
 		let start: number = offendingSymbol.start; 
 		console.log (offendingSymbol); 
 		console.log (text); 
+		console.log (errorPiece); 
 
 		let space = ['\t', '\v', '\n', '\r', '\b', '\f', ' ']; 
 
@@ -167,7 +98,7 @@ class CustomErrorListener {
 			while (j < text.length && text[j] != '}'){  // Find the close curly brace. 
 				j ++; 
 			}
-			if (j === text.length || j === text.length - 1 || text[j + 1] != '}'){  // text[j] === '}' or j === text.length 
+			if (j === text.length || j === text.length - 1 || text[j + 1] != '}'){  
 				msg = 'Unmatched curly braces'; 
 			} else if (text[i] === '\"' || (i + 3 < text.length && text[i] === '\'' && text[i + 1] === '\'' && text[i + 2] === '\'')){  // clob
 				msg = 'Invalid clob'; 
@@ -188,9 +119,6 @@ const IonTextListener = require('./IonTextListener.js');
 let documentText = "";
 
 async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	// In this simple example we get the settings for every validate run.
-	let settings = await getDocumentSettings(textDocument.uri);
-
 	documentText = textDocument.getText(); 
 	const chars = new antlr4.InputStream(documentText); 
 	const lexer = new IonTextLexer.IonTextLexer(chars); 
