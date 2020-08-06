@@ -1,39 +1,105 @@
 import {
 	createConnection,
-	TextDocuments,
-	ProposedFeatures,
+	Diagnostic,
+	DiagnosticSeverity,
 	InitializeParams,
+	ProposedFeatures,
+	Range,
+	TextDocuments, 
 	TextDocumentSyncKind
 } from 'vscode-languageserver';
+import { TextDocument } from 'vscode-languageserver-textdocument';
+import * as ion from 'ion-js';
 
-import {
-	TextDocument
-} from 'vscode-languageserver-textdocument';
-
-// Create a connection for the server, using Node's IPC as a transport.
-// Also include all preview / proposed LSP features.
 let connection = createConnection(ProposedFeatures.all);
 
-// Create a simple text document manager. 
 let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 connection.onInitialize((params: InitializeParams) => {
 	return {
 		capabilities: {
 			textDocumentSync: TextDocumentSyncKind.Incremental,
-			// Tell the client that this server supports code completion. 
 			completionProvider: {
-				resolveProvider: false
-			}
+				resolveProvider: true
+			},
+			documentFormattingProvider: true
 		}
-	}
+	};
 });
 
 connection.onInitialized(() => {});
 
-// Make the text document manager listen on the connection
-// for open, change and close text document events
+connection.onDidChangeConfiguration(change => {
+	documents.all().forEach(validateTextDocument);
+});
+
+documents.onDidChangeContent(change => {
+	validateTextDocument(change.document);
+});
+
+// custom implementation of ANTLR's ErrorListener
+class CustomErrorListener {
+	private diagnostics: Diagnostic[] = [];
+
+	public syntaxError(recognizer: any, offendingSymbol: any /*Token*/, line: number, column: number, msg: string, e: any): void { 
+		let lineInEditor = line - 1; 
+		let diagnostic: Diagnostic = {
+			severity: DiagnosticSeverity.Warning, 
+			range: Range.create(lineInEditor, column, lineInEditor, column + offendingSymbol.stop - offendingSymbol.start + 1),
+			message: msg, 
+			source: 'ex', 
+		};
+		this.diagnostics.push(diagnostic);
+	}
+
+	public reportAmbiguity(recognizer: any, dfa: any, startIndex: number, stopIndex: number, exact: any, ambigAlts: any, configs: any) {
+		// TBD
+	}
+
+	public reportAttemptingFullContext(recognizer: any, dfa: any, startIndex: number, stopIndex: number,
+			conflictingAlts: any, configs: any): void {
+		// TBD
+	}
+
+	public reportContextSensitivityn(recognizer: any, dfa: any, startIndex: number, stopIndex: number, prediction: any, configs: any) {
+		// TBD
+	}
+
+	public getDiagnostics(): Diagnostic[] {
+		return this.diagnostics;
+	}
+}
+
+const antlr4 = require('antlr4');
+const IonTextLexer = require('../ion-js/IonTextLexer.js');
+const IonTextParser = require('../ion-js/IonTextParser.js');
+const IonTextListener = require('../ion-js/IonTextListener.js');
+
+let documentText = "";
+
+async function validateTextDocument(textDocument: TextDocument): Promise<void> {
+	documentText = textDocument.getText(); 
+	const chars = new antlr4.InputStream(documentText); 
+	const lexer = new IonTextLexer.IonTextLexer(chars); 
+	lexer.strictMode = false; 
+
+	const tokens = new antlr4.CommonTokenStream(lexer); 
+	const parser = new IonTextParser.IonTextParser(tokens); 
+
+	const errorListener = new CustomErrorListener(); 
+	parser.addErrorListener(errorListener); 
+
+	const listener = new IonTextListener.IonTextListener(); 
+	const tree = parser.top_level(); 
+	antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree); 
+
+	// codeCompletions = Object.keys(listener.symbols); 
+	// console.log('codeCompletions: ' + codeCompletions); 
+
+	let diagnostics = errorListener.getDiagnostics(); 
+	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics }); 
+}
+
 documents.listen(connection);
 
-// Listen on the connection
 connection.listen();
