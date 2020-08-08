@@ -6,7 +6,9 @@ import {
 	ProposedFeatures,
 	Range,
 	TextDocuments, 
-	TextDocumentSyncKind
+	TextDocumentSyncKind, 
+	DocumentFormattingParams, 
+	TextEdit, 
 } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import * as ion from 'ion-js';
@@ -99,6 +101,23 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 	let diagnostics = errorListener.getDiagnostics(); 
 	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics }); 
 }
+
+connection.onDocumentFormatting(
+	(params: DocumentFormattingParams): TextEdit[] => {
+		let reader = ion.makeReader(documentText);
+		let writer = ion.makePrettyWriter();
+		writer.writeValues(reader);
+		writer.getBytes();
+		writer.close();
+
+		documentText = String.fromCharCode.apply(null, Array.from(writer.getBytes()));
+
+		let textEdits: TextEdit[] = [];
+		textEdits.push(TextEdit.replace(Range.create(0, 0, 9999, 9999), documentText));
+
+		return textEdits;
+	}
+);
 
 documents.listen(connection);
 
