@@ -1,0 +1,15 @@
+{
+  name:{
+    first:"Homer",
+    middle:"Jay",
+    last:"Simpson"
+  },
+  dateOfBirth:"1956-05-12",
+  occupation:"Nuclear Safety Inspector",
+  address:{
+    street:"742 Evergreen Terrace",
+    city:"Springfield",
+    state:"Oregon",
+    zip:97478
+  }
+}
