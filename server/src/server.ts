@@ -6,7 +6,9 @@ import {
 	ProposedFeatures,
 	Range,
 	TextDocuments, 
-	TextDocumentSyncKind
+	TextDocumentSyncKind, 
+	DocumentFormattingParams, 
+	TextEdit
 } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import * as ion from 'ion-js';
@@ -75,10 +77,11 @@ const IonTextLexer = require('../ion-js/IonTextLexer.js');
 const IonTextParser = require('../ion-js/IonTextParser.js');
 const IonTextListener = require('../ion-js/IonTextListener.js');
 
-let documentText = "";
+let document: TextDocument; 
 
 async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	documentText = textDocument.getText(); 
+	document = textDocument; 
+	let documentText: string = textDocument.getText(); 
 	const chars = new antlr4.InputStream(documentText); 
 	const lexer = new IonTextLexer.IonTextLexer(chars); 
 	lexer.strictMode = false; 
@@ -99,6 +102,24 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 	let diagnostics = errorListener.getDiagnostics(); 
 	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics }); 
 }
+
+connection.onDocumentFormatting(
+	(params: DocumentFormattingParams): TextEdit[] => {
+		let documentText: string = document.getText (); 
+		let reader = ion.makeReader(documentText);
+		let writer = ion.makePrettyWriter();
+		writer.writeValues(reader);
+		writer.getBytes();
+		writer.close();
+
+		documentText = String.fromCharCode.apply(null, Array.from(writer.getBytes()));
+
+		let textEdits: TextEdit[] = [];
+		textEdits.push(TextEdit.replace(Range.create(0, 0, document.lineCount + 1, 0), documentText));
+
+		return textEdits;
+	}
+);
 
 documents.listen(connection);
 
