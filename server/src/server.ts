@@ -8,7 +8,7 @@ import {
 	TextDocuments, 
 	TextDocumentSyncKind, 
 	DocumentFormattingParams, 
-	TextEdit, 
+	TextEdit
 } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import * as ion from 'ion-js';
@@ -113,7 +113,7 @@ connection.onDocumentFormatting(
 		documentText = String.fromCharCode.apply(null, Array.from(writer.getBytes()));
 
 		let textEdits: TextEdit[] = [];
-		textEdits.push(TextEdit.replace(Range.create(0, 0, documentText.length + 1, 0), documentText));
+		textEdits.push(TextEdit.replace(Range.create(0, 0, findNumberOfLines (documentText) + 1, 0), documentText));
 
 		return textEdits;
 	}
@@ -122,3 +122,15 @@ connection.onDocumentFormatting(
 documents.listen(connection);
 
 connection.listen();
+
+function findNumberOfLines (textDocument: string): number{
+	let count = 1;  // Line number
+	for (let i = 0; i < textDocument.length; i++){
+		if (textDocument[i] === '\n'){
+			count ++; 
+		}
+	}
+
+	console.log (count); 
+	return count; 
+}
