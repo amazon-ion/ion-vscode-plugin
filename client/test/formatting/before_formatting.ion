@@ -20,10 +20,21 @@ occupation    :     "Nuclear Safety Inspector"     ,
                         5
             ],
             list1       :  [1, 2, 3, 4, 5],
+
+            list2   : [ [1, 2]  , [3,   4]  ,   [ 5 ]  ], 
+
+            list3 :  [  (   abc   ) , ( a   b d )   , ( a    j   c  )  ] , 
+            
+            list4   : [ [ 1  , 2  ] , (  a  b c ), { field1  : "value" , field2 : annoation :: "value" } ], 
+
             sexp0  :   (
                         a 
               b 
                     c
             ), 
-            sexp1     :     (   abcde   )
-}
+
+            sexp1     :     (   abcde   ), 
+
+
+            sexp2 :  ( [  1 , 2  , 3  ]  ( abc  ) { field1  : "value" , field2 : annoation :: "value" }  )
+} 

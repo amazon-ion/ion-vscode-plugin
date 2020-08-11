@@ -77,10 +77,11 @@ const IonTextLexer = require('../ion-js/IonTextLexer.js');
 const IonTextParser = require('../ion-js/IonTextParser.js');
 const IonTextListener = require('../ion-js/IonTextListener.js');
 
-let documentText = "";
+let document: TextDocument; 
 
 async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	documentText = textDocument.getText(); 
+	document = textDocument; 
+	let documentText: string = textDocument.getText(); 
 	const chars = new antlr4.InputStream(documentText); 
 	const lexer = new IonTextLexer.IonTextLexer(chars); 
 	lexer.strictMode = false; 
@@ -104,6 +105,7 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 
 connection.onDocumentFormatting(
 	(params: DocumentFormattingParams): TextEdit[] => {
+		let documentText: string = document.getText (); 
 		let reader = ion.makeReader(documentText);
 		let writer = ion.makePrettyWriter();
 		writer.writeValues(reader);
@@ -113,7 +115,7 @@ connection.onDocumentFormatting(
 		documentText = String.fromCharCode.apply(null, Array.from(writer.getBytes()));
 
 		let textEdits: TextEdit[] = [];
-		textEdits.push(TextEdit.replace(Range.create(0, 0, findNumberOfLines (documentText) + 1, 0), documentText));
+		textEdits.push(TextEdit.replace(Range.create(0, 0, document.lineCount + 1, 0), documentText));
 
 		return textEdits;
 	}
@@ -122,15 +124,3 @@ connection.onDocumentFormatting(
 documents.listen(connection);
 
 connection.listen();
-
-function findNumberOfLines (textDocument: string): number{
-	let count = 1;  // Line number
-	for (let i = 0; i < textDocument.length; i++){
-		if (textDocument[i] === '\n'){
-			count ++; 
-		}
-	}
-
-	console.log (count); 
-	return count; 
-}
