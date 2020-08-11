@@ -1,15 +1,29 @@
 {
-name:{
-first:"Homer",
-middle:"Jay",
-last:"Simpson"
+    name  :   {
+      first :   "Homer"   ,
+      middle  :   "Jay"   ,
+      last    :   "Simpson"
+          }     ,
+        dateOfBirth   :   "1956-05-12"    ,
+occupation    :     "Nuclear Safety Inspector"     ,
+      address     :     {
+  street        :   "742 Evergreen Terrace"     ,
+        city    :     "Springfield"     ,
+                          state   :    "Oregon"    ,
+                                zip   :    97478
 },
-dateOfBirth:"1956-05-12",
-occupation:"Nuclear Safety Inspector",
-address:{
-street:"742 Evergreen Terrace",
-city:"Springfield",
-state:"Oregon",
-zip:97478
-}
+            list0   :   [
+                1   ,
+                  2   ,
+                    3     ,
+                      4       ,
+                        5
+            ],
+            list1       :  [1, 2, 3, 4, 5],
+            sexp0  :   (
+                        a 
+              b 
+                    c
+            ), 
+            sexp1     :     (   abcde   )
 }

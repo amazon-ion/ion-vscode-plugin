@@ -11,5 +11,27 @@
     city:"Springfield",
     state:"Oregon",
     zip:97478
-  }
+  },
+  list0:[
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  list1:[
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  sexp0:(
+    a 
+    b 
+    c
+  ),
+  sexp1:(
+    abcde
+  )
 }

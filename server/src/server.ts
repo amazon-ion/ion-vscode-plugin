@@ -113,7 +113,7 @@ connection.onDocumentFormatting(
 		documentText = String.fromCharCode.apply(null, Array.from(writer.getBytes()));
 
 		let textEdits: TextEdit[] = [];
-		textEdits.push(TextEdit.replace(Range.create(0, 0, 9999, 9999), documentText));
+		textEdits.push(TextEdit.replace(Range.create(0, 0, documentText.length + 1, 0), documentText));
 
 		return textEdits;
 	}
