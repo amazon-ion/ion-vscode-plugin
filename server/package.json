@@ -1,7 +1,7 @@
 {
 	"name": "ion-lsp-server",
 	"description": "VSCode LSP server for Ion. ",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"author": "ion-team",
 	"license": "Apache 2.0",
 	"engines": {
