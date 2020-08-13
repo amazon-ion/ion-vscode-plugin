@@ -3,12 +3,17 @@
 
 # VSCode extension for Ion 
 
-VSCode extension (plugin) that supports the Ion data format.  
+[VSCode extension (plugin)](https://marketplace.visualstudio.com/items?itemName=TheIonTeam.ion-extension) that supports the Ion data format.
 
 ## Functionality 
 
-* Syntax highlighting. 
-
+- **Syntax highlighting** 
+    Colorize the Ion values in your document. 
+-  **Error reporting** 
+    Reports errors in the editor and the "Problems" tab. Currently supports whole document validation. 
+- **Formatting** 
+    Formats the whole document. Currently supports whole error-free document formatting. 
+    
 ## Development 
 
 - Run `npm install` in this folder. This installs all necessary npm modules in both the client and server folder
@@ -18,10 +23,8 @@ VSCode extension (plugin) that supports the Ion data format.
 - Select `Launch Client` from the drop down.
 - Run the launch config.
 - If you want to debug the server as well use the launch configuration `Attach to Server`
-- In the [Extension Development Host] instance of VSCode, open a document in 'plain text' language mode.
-  - Type `j` or `t` to see `Javascript` and `TypeScript` completion.
-  - Enter text content such as `AAA aaa BBB`. The extension will emit diagnostics for all words in all-uppercase.
 
 ## Running the Test
 
 - Run `npm test` 
+

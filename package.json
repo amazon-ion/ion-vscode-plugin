@@ -3,7 +3,7 @@
 	"description": "Ion Extension to support the Ion data format on VSCode",
 	"author": "The Ion Team",
 	"license": "Apache 2.0",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/amzn/ion-vscode-plugin"
@@ -43,8 +43,8 @@
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-                "test": "vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t \"client/test/highlight/**/*.ion\"",
-	        "test:ui": "node ./client/out/test/runTest.js"
+		"test": "vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t \"client/test/highlight/**/*.ion\"",
+		"test:ui": "node ./client/out/test/runTest.js"
 	},
 	"devDependencies": {
 		"@types/mocha": "^5.2.7",
