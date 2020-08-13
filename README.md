@@ -12,8 +12,7 @@
 -  **Error reporting** 
     Reports errors in the editor and the "Problems" tab. Currently supports whole document validation. 
 - **Formatting** 
-    Formats the whole document. Currently support whole error-free document formatting. 
-Usage: Press `Shift + Option + F`, then select `Format Document`. 
+    Formats the whole document. Currently supports whole error-free document formatting. 
     
 ## Development 
 
