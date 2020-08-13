@@ -3,17 +3,17 @@
 
 # VSCode extension for Ion 
 
-VSCode extension (plugin) that supports the Ion data format. You can download this extension from VSCode marketplace. 
-GitHub repository: https://github.com/amzn/ion-vscode-plugin 
+[VSCode extension (plugin)](https://marketplace.visualstudio.com/items?itemName=TheIonTeam.ion-extension) that supports the Ion data format.
 
 ## Functionality 
 
 - **Syntax highlighting** 
-    Colorize the text document. 
+    Colorize the Ion values in your document. 
 -  **Error reporting** 
-    Give a Squiggly line for the error part. For now, it only finds the first error in the editor. 
+    Reports errors in the editor and the "Problems" tab. Currently supports whole document validation. 
 - **Formatting** 
-    Press `Shift + Option + F`, then type `Format Document`. 
+    Formats the whole document. Currently support whole error-free document formatting. 
+Usage: Press `Shift + Option + F`, then select `Format Document`. 
     
 ## Development 
 
