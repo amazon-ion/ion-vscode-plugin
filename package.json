@@ -26,7 +26,8 @@
 				"id": "ion",
 				"extensions": [
 					".ion"
-				]
+				], 
+				"configuration": "./language-configuration.json"
 			}
 		],
 		"grammars": [
