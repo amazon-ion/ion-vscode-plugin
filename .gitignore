@@ -1,6 +1,8 @@
 out
 node_modules
 .vscode-test
+ion-extension-0.2.0.vsix
+test-resources/
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,emacs,intellij+all,eclipse,visualstudiocode,visualstudio,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,emacs,intellij+all,eclipse,visualstudiocode,visualstudio,node

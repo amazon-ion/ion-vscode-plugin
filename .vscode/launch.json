@@ -33,6 +33,22 @@
 				"${workspaceRoot}/client/testFixture"
 			],
 			"outFiles": ["${workspaceRoot}/client/out/test/**/*.js"]
+		}, 
+		{
+			"name": "Debug UI Tests",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceFolder}/node_modules/.bin/extest",
+			"args": [
+				"setup-and-run",
+				"${workspaceFolder}/client/out/ui-test/*.js",
+				"-o",
+				".vscode/settings.json",
+				"--mocha_config",
+				"${workspaceFolder}/client/src/ui-test/.mocharc-debug.js"
+			],
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen"
 		}
 	],
 	"compounds": [
