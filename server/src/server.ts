@@ -39,6 +39,11 @@ documents.onDidChangeContent(change => {
 	validateTextDocument(change.document);
 });
 
+documents.onDidClose (e => {
+	let diagnostics: Diagnostic[] = []; 
+	connection.sendDiagnostics ({ uri: e.document.uri, diagnostics }); 
+}); 
+
 // custom implementation of ANTLR's ErrorListener
 class CustomErrorListener {
 	private diagnostics: Diagnostic[] = [];
