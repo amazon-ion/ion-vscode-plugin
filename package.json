@@ -26,7 +26,8 @@
 				"id": "ion",
 				"extensions": [
 					".ion"
-				]
+				],
+				"configuration": "./language-configuration.json"
 			}
 		],
 		"grammars": [
@@ -43,7 +44,8 @@
 		"watch": "tsc -b -w",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
 		"test": "vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t \"client/test/highlight/**/*.ion\"",
-		"test:ui": "node ./client/out/test/runTest.js"
+		"test:ui": "node ./client/out/test/runTest.js", 
+		"test:extest": "extest setup-and-run client/out/ui-test/*.js -o .vscode/settings.json"
 	},
 	"devDependencies": {
 		"@types/mocha": "^5.2.7",
@@ -52,6 +54,7 @@
 		"eslint": "^6.4.0",
 		"mocha": "^6.2.2",
 		"typescript": "^3.9.4",
+		"vscode-extension-tester": "^3.1.0",
 		"vscode-tmgrammar-test": "0.0.10"
 	}
 }
