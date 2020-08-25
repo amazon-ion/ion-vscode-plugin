@@ -27,6 +27,9 @@
 				"extensions": [
 					".ion"
 				],
+				"aliases": [
+					"Ion"
+				],
 				"configuration": "./language-configuration.json"
 			}
 		],
@@ -44,7 +47,7 @@
 		"watch": "tsc -b -w",
 		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
 		"test": "vscode-tmgrammar-test -s source.ion -g syntaxes/ion.tmLanguage.json -t \"client/test/highlight/**/*.ion\"",
-		"test:ui": "node ./client/out/test/runTest.js", 
+		"test:ui": "node ./client/out/test/runTest.js",
 		"test:extest": "extest setup-and-run client/out/ui-test/*.js -o .vscode/settings.json"
 	},
 	"devDependencies": {
