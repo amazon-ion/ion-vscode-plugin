@@ -5,9 +5,9 @@ import {
 	InitializeParams,
 	ProposedFeatures,
 	Range,
-	TextDocuments, 
-	TextDocumentSyncKind, 
-	DocumentFormattingParams, 
+	TextDocuments,
+	TextDocumentSyncKind,
+	DocumentFormattingParams,
 	TextEdit
 } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
@@ -29,7 +29,7 @@ connection.onInitialize((params: InitializeParams) => {
 	};
 });
 
-connection.onInitialized(() => {});
+connection.onInitialized(() => { });
 
 connection.onDidChangeConfiguration(change => {
 	documents.all().forEach(validateTextDocument);
@@ -39,22 +39,24 @@ documents.onDidChangeContent(change => {
 	validateTextDocument(change.document);
 });
 
-documents.onDidClose (e => {
-	let diagnostics: Diagnostic[] = []; 
-	connection.sendDiagnostics ({ uri: e.document.uri, diagnostics }); 
-}); 
+documents.onDidClose(e => {
+	let diagnostics: Diagnostic[] = [];
+	connection.sendDiagnostics({ uri: e.document.uri, diagnostics });
+});
+
+connection.onCompletion((_textDocumentPosition) => { return [] });
 
 // custom implementation of ANTLR's ErrorListener
 class CustomErrorListener {
 	private diagnostics: Diagnostic[] = [];
 
-	public syntaxError(recognizer: any, offendingSymbol: any /*Token*/, line: number, column: number, msg: string, e: any): void { 
-		let lineInEditor = line - 1; 
+	public syntaxError(recognizer: any, offendingSymbol: any /*Token*/, line: number, column: number, msg: string, e: any): void {
+		let lineInEditor = line - 1;
 		let diagnostic: Diagnostic = {
-			severity: DiagnosticSeverity.Warning, 
+			severity: DiagnosticSeverity.Warning,
 			range: Range.create(lineInEditor, column, lineInEditor, column + offendingSymbol.stop - offendingSymbol.start + 1),
-			message: msg, 
-			source: 'ex', 
+			message: msg,
+			source: 'ex',
 		};
 		this.diagnostics.push(diagnostic);
 	}
@@ -64,7 +66,7 @@ class CustomErrorListener {
 	}
 
 	public reportAttemptingFullContext(recognizer: any, dfa: any, startIndex: number, stopIndex: number,
-			conflictingAlts: any, configs: any): void {
+		conflictingAlts: any, configs: any): void {
 		// TBD
 	}
 
@@ -82,37 +84,35 @@ const IonTextLexer = require('../ion-js/IonTextLexer.js');
 const IonTextParser = require('../ion-js/IonTextParser.js');
 const IonTextListener = require('../ion-js/IonTextListener.js');
 
-let document: TextDocument; 
+let document: TextDocument;
 
 async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	document = textDocument; 
-	let documentText: string = textDocument.getText(); 
-	const chars = new antlr4.InputStream(documentText); 
-	const lexer = new IonTextLexer.IonTextLexer(chars); 
-	lexer.strictMode = false; 
+	document = textDocument;
+	let documentText: string = textDocument.getText();
+	const chars = new antlr4.InputStream(documentText);
+	const lexer = new IonTextLexer.IonTextLexer(chars);
+	lexer.strictMode = false;
 
-	const tokens = new antlr4.CommonTokenStream(lexer); 
-	const parser = new IonTextParser.IonTextParser(tokens); 
+	const tokens = new antlr4.CommonTokenStream(lexer);
+	const parser = new IonTextParser.IonTextParser(tokens);
 
-	const errorListener = new CustomErrorListener(); 
-	parser.addErrorListener(errorListener); 
+	const errorListener = new CustomErrorListener();
+	parser.addErrorListener(errorListener);
 
-	const listener = new IonTextListener.IonTextListener(); 
-	const tree = parser.top_level(); 
-	antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree); 
+	const listener = new IonTextListener.IonTextListener();
+	const tree = parser.top_level();
+	antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
 
-	// codeCompletions = Object.keys(listener.symbols); 
-	// console.log('codeCompletions: ' + codeCompletions); 
-
-	let diagnostics = errorListener.getDiagnostics(); 
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics }); 
+	let diagnostics = errorListener.getDiagnostics();
+	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
 }
 
 connection.onDocumentFormatting(
 	(params: DocumentFormattingParams): TextEdit[] => {
-		let documentText: string = document.getText (); 
+		let tabSize = params.options.tabSize
+		let documentText: string = document.getText();
 		let reader = ion.makeReader(documentText);
-		let writer = ion.makePrettyWriter();
+		let writer = ion.makePrettyWriter(tabSize);
 		writer.writeValues(reader);
 		writer.getBytes();
 		writer.close();
