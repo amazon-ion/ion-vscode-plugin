@@ -109,7 +109,7 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 
 connection.onDocumentFormatting(
 	(params: DocumentFormattingParams): TextEdit[] => {
-		let tabSize = params.options.tabSize
+		let tabSize = params.options.tabSize;
 		let documentText: string = document.getText();
 		let reader = ion.makeReader(documentText);
 		let writer = ion.makePrettyWriter(tabSize);
