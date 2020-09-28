@@ -44,6 +44,7 @@ documents.onDidClose(e => {
 	connection.sendDiagnostics({ uri: e.document.uri, diagnostics });
 });
 
+// On completion, do nothing. This is needed to suppress errors.
 connection.onCompletion((_textDocumentPosition) => { return [] });
 
 // custom implementation of ANTLR's ErrorListener
