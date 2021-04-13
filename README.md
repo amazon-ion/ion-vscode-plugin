@@ -16,6 +16,7 @@
     
 ## Development 
 
+- This project transitively uses [`node-gyp`](https://github.com/nodejs/node-gyp), so see configuration instructions for your platform there.
 - Run `npm install` in this folder. This installs all necessary npm modules in both the client and server folder
 - Open VS Code on this folder.
 - Press Ctrl+Shift+B to compile the client and server.
