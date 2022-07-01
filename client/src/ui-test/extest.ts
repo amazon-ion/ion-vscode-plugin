@@ -29,7 +29,7 @@ describe('auto-closing', () => {
 
     it('rounded brackets', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (1, 1, '(');
+        await editor.typeTextAt (1, 1, '(');
 
         const line = await editor.getTextAtLine(1);
         assert.equal (line, '()');
@@ -37,7 +37,7 @@ describe('auto-closing', () => {
 
     it('square brackets', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (2, 1, '[');
+        await editor.typeTextAt (2, 1, '[');
 
         const line = await editor.getTextAtLine(2);
         assert.equal (line, '[]');
@@ -45,7 +45,7 @@ describe('auto-closing', () => {
 
     it('curly brackets', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (3, 1, '{');
+        await editor.typeTextAt (3, 1, '{');
 
         const line = await editor.getTextAtLine(3);
         assert.equal (line, '{}');
@@ -53,9 +53,9 @@ describe('auto-closing', () => {
 
     it('brackets combination', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (4, 1, '{');
-        await editor.typeText (4, 2, '[');
-        await editor.typeText (4, 3, '(');
+        await editor.typeTextAt (4, 1, '{');
+        await editor.typeTextAt (4, 2, '[');
+        await editor.typeTextAt (4, 3, '(');
 
         const line = await editor.getTextAtLine(4);
         assert.equal (line, '{[()]}');
@@ -63,7 +63,7 @@ describe('auto-closing', () => {
 
     it('single quote', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (5, 1, '\'');
+        await editor.typeTextAt (5, 1, '\'');
 
         const line = await editor.getTextAtLine(5);
         assert.equal (line, '\'\'');
@@ -71,7 +71,7 @@ describe('auto-closing', () => {
 
     it('double quotes', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (6, 1, '\"');
+        await editor.typeTextAt (6, 1, '\"');
 
         const line = await editor.getTextAtLine(6);
         assert.equal (line, '\"\"');
@@ -79,7 +79,7 @@ describe('auto-closing', () => {
 
     it('triple quotes', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (7, 1, '\'\'\'');
+        await editor.typeTextAt (7, 1, '\'\'\'');
 
         const line = await editor.getTextAtLine(7);
         assert.equal (line, '\'\'\'\'\'\'');
@@ -88,7 +88,7 @@ describe('auto-closing', () => {
     it('single quote in double quotes', async function() {
         // Auto-closing should not work in string. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (8, 1, '\"\'');
+        await editor.typeTextAt (8, 1, '\"\'');
 
         const line = await editor.getTextAtLine(8);
         assert.equal (line, '\"\'\"');
@@ -97,9 +97,9 @@ describe('auto-closing', () => {
     it('single quote in triple quotes', async function() {
         // Auto-closing should not work in string. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (9, 1, '\'\'\'');
-        await editor.typeText (9, 4, '  ');
-        await editor.typeText (9, 5, '\'');
+        await editor.typeTextAt (9, 1, '\'\'\'');
+        await editor.typeTextAt (9, 4, '  ');
+        await editor.typeTextAt (9, 5, '\'');
 
         const line = await editor.getTextAtLine(9);
         assert.equal (line, '\'\'\' \' \'\'\'');
@@ -108,7 +108,7 @@ describe('auto-closing', () => {
     it('double quotes in triple quotes', async function() {
         // Auto-closing should not work in string. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (10, 1, '\'\'\'\"');
+        await editor.typeTextAt (10, 1, '\'\'\'\"');
 
         const line = await editor.getTextAtLine(10);
         assert.equal (line, '\'\'\'\"\'\'\'');
@@ -117,7 +117,7 @@ describe('auto-closing', () => {
     it('triple quotes in double quotes', async function() {
         // Auto-closing should not work in string. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (11, 1, '\"\'\'\'');
+        await editor.typeTextAt (11, 1, '\"\'\'\'');
 
         const line = await editor.getTextAtLine(11);
         assert.equal (line, '\"\'\'\'\"');
@@ -125,7 +125,7 @@ describe('auto-closing', () => {
 
     it('block comment', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (12, 1, '/*');
+        await editor.typeTextAt (12, 1, '/*');
 
         const line = await editor.getTextAtLine(12);
         assert.equal (line, '/* */');
@@ -134,7 +134,7 @@ describe('auto-closing', () => {
     it('quotes in line comment', async function() {
         // Auto-closing should not work in comment. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (13, 1, '//\'\"\'\'\'');
+        await editor.typeTextAt (13, 1, '//\'\"\'\'\'');
 
         const line = await editor.getTextAtLine(13);
         assert.equal (line, '//\'\"\'\'\'');
@@ -143,7 +143,7 @@ describe('auto-closing', () => {
     it('quotes in block comment', async function() {
         // Auto-closing should not work in comment. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (14, 1, '/*\'\"\'\'\'');
+        await editor.typeTextAt (14, 1, '/*\'\"\'\'\'');
 
         const line = await editor.getTextAtLine(14);
         assert.equal (line, '/*\'\"\'\'\' */');
@@ -151,8 +151,8 @@ describe('auto-closing', () => {
 
     it('blobs and clobs', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (15, 1, '{{');
-        await editor.typeText (15, 3, ' 1111 ');
+        await editor.typeTextAt (15, 1, '{{');
+        await editor.typeTextAt (15, 3, ' 1111 ');
 
         const line = await editor.getTextAtLine(15);
         assert.equal (line, '{{ 1111 }}');
@@ -185,7 +185,7 @@ describe('auto-indentation', () => {
 
     it('rounded brackets indentation', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (1, 1, '(\n');
+        await editor.typeTextAt (1, 1, '(\n');
 
         const line1 = await editor.getTextAtLine(1);
         const line2 = await editor.getTextAtLine(2);
@@ -197,7 +197,7 @@ describe('auto-indentation', () => {
 
     it('square brackets indentation', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (4, 1, '[\n');
+        await editor.typeTextAt (4, 1, '[\n');
 
         const line1 = await editor.getTextAtLine(4);
         const line2 = await editor.getTextAtLine(5);
@@ -209,7 +209,7 @@ describe('auto-indentation', () => {
 
     it('curly brackets indentation', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (7, 1, '{\n');
+        await editor.typeTextAt (7, 1, '{\n');
 
         const line1 = await editor.getTextAtLine(7);
         const line2 = await editor.getTextAtLine(8);
@@ -221,7 +221,7 @@ describe('auto-indentation', () => {
 
     it('brackets combination', async function() {
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (10, 1, '{\n[\n(\n');
+        await editor.typeTextAt (10, 1, '{\n[\n(\n');
 
         const line1 = await editor.getTextAtLine(10);
         const line2 = await editor.getTextAtLine(11);
@@ -242,7 +242,7 @@ describe('auto-indentation', () => {
     it('single quote indentation', async function() {
         // Auto-indentation should not work for double quotes. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (17, 1, '\'\n');
+        await editor.typeTextAt (17, 1, '\'\n');
 
         const line1 = await editor.getTextAtLine(17);
         const line2 = await editor.getTextAtLine(18);
@@ -253,7 +253,7 @@ describe('auto-indentation', () => {
     it('double quotes indentation', async function() {
         // Auto-indentation should not work for double quotes. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (19, 1, '"\n');
+        await editor.typeTextAt (19, 1, '"\n');
 
         const line1 = await editor.getTextAtLine(19);
         const line2 = await editor.getTextAtLine(20);
@@ -264,7 +264,7 @@ describe('auto-indentation', () => {
     it('triple quotes indentation', async function() {
         // Auto-indentation should not work for double quotes. 
         this.timeout(DEFAULT_TIMEOUT);
-        await editor.typeText (21, 1, '\'\'\'\n');
+        await editor.typeTextAt (21, 1, '\'\'\'\n');
 
         const line1 = await editor.getTextAtLine(21);
         const line2 = await editor.getTextAtLine(22);
