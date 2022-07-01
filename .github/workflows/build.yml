@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [12.x] 	    # only lts node version for now
+        node-version: [18.x] 	    # only lts node version for now
 
     steps:
       - name: Git Checkout

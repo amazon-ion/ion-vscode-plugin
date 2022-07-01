@@ -59,5 +59,8 @@
 		"typescript": "^3.9.4",
 		"vscode-extension-tester": "^3.1.0",
 		"vscode-tmgrammar-test": "0.0.10"
+	},
+	"dependencies": {
+		"oniguruma": "^7.2.3"
 	}
 }
