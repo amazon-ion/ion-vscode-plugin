@@ -8,6 +8,8 @@ import {
 	TextDocuments,
 	TextDocumentSyncKind,
 	DocumentFormattingParams,
+	CompletionItem,
+	TextDocumentPositionParams,
 	TextEdit
 } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
@@ -45,7 +47,18 @@ documents.onDidClose(e => {
 });
 
 // On completion, do nothing. This is needed to suppress errors.
-connection.onCompletion((_textDocumentPosition) => { return [] });
+connection.onCompletion(
+	(_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
+	  return [];
+	}
+  );
+
+// On completion resolve, do nothing. This is needed to suppress errors.
+connection.onCompletionResolve(
+	(item: CompletionItem): CompletionItem => {
+	  return item;
+	}
+  );
 
 // custom implementation of ANTLR's ErrorListener
 class CustomErrorListener {
