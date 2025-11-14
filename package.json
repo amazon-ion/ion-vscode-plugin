@@ -57,7 +57,7 @@
 		"@typescript-eslint/parser": "^8.45.0",
 		"eslint": "^9.36.0",
 		"eslint-config-prettier": "^10.1.8",
-		"vscode-extension-tester": "^8.0.0",
+		"vscode-extension-tester": "^8.18.0",
 		"vscode-tmgrammar-test": "^0.1.3"
 	}
 }
